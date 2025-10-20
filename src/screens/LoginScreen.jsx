@@ -5,8 +5,7 @@ import '../styles/LoginScreen.css'
 function LoginScreen () {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [isModalVisible, setIsModalVisible] = useState(false)
-    const [isModalExiting, setIsModalExiting] = useState(false);
+    const [isModalVisible, setIsModalVisible] = useState(false);
     const [message, setMessage] = useState('');
     const navigate = useNavigate();
 
@@ -21,38 +20,41 @@ function LoginScreen () {
 
             if (!response.ok) {
                 setIsModalVisible(true);
-
-                setTimeout(() => {
-                    setIsModalExiting(true);
-                    setTimeout(() => {
-                        setIsModalExiting(false);
-                        setIsModalVisible(false);
-                    }, 400);
-                }, 3000);
-
-                throw new Error("Credenciales inválidas");
+                throw new Error("Invalid email or password.");
             }
 
             const data = await response.json();
 
-            localStorage.setItem("user", JSON.stringify(data.user));
-            window.location.reload();
+            if (data) {
+                localStorage.setItem("user", JSON.stringify(data.user));
+                navigate('/');
+                window.location.reload();
+            }
         } catch (error) {
             setMessage(error.message);
         }
     };
 
     const handleSingup = () => {
-        navigate('/signup')
+        navigate('/signup');
     }
 
     return (
         <main>
-            <section id='forms-container'>
+            <section id='forms-container' className={isModalVisible ? 'forms-error' : ''}>
                 <div id="header">
                     <h1>Welcome Back</h1>
                     <h4>Please enter your details to sign in</h4>
                 </div>
+
+                {
+                    isModalVisible && (
+                        <div id="error-message">
+                            <h4>{message}</h4>
+                            <p>Please try again.</p>
+                        </div>
+                    )
+                }
 
                 <form onSubmit={handleLogin}>
                     <div className="input-container">
@@ -60,7 +62,7 @@ function LoginScreen () {
                         <input 
                             type="email" 
                             name='email' 
-                            placeholder='correo@gmail.com' 
+                            placeholder='my_email@gmail.com' 
                             value={email} 
                             onChange={(e) => setEmail(e.target.value)}
                             required />
@@ -83,17 +85,8 @@ function LoginScreen () {
                     </div>
                 </form>
             </section>
-
-            {
-                isModalVisible && (
-                    <section id='modal' className={ isModalExiting ? 'slide-out' : 'slide-in' }>
-                        <i class="fa-solid fa-xmark" id='error-icon'></i>
-                        <p>Invalid Credentials</p>
-                    </section>
-                )
-            }
         </main>
-    )
+    );
 }
 
 export default LoginScreen;
