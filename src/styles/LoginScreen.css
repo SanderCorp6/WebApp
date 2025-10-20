@@ -6,7 +6,7 @@ main {
     justify-content: center;
     align-items: center;
 
-    background-color: white;
+    background-color: #fafafa;
     color: black;
 }
 
@@ -19,6 +19,9 @@ main {
     box-shadow: 0px 0px 50px rgba(0, 0, 0, 0.15);
     padding: 50px 30px;
     border-radius: 20px;
+}
+#forms-container.forms-error {
+    gap: 25px;
 }
 
 #header {
@@ -60,7 +63,20 @@ form {
     border: 1px solid #E1E1E1;
     width: 350px;
 }
+.input-container select{
+    font-size: 0.75rem;
+    font-weight: 500px;
+    
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #E1E1E1;
+    width: 350px;
 
+    background: url(data:image/svg+xml;base64,PHN2ZyBpZD0iTGF5ZXJfMSIgZGF0YS1uYW1lPSJMYXllciAxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0Ljk1IDEwIj48ZGVmcz48c3R5bGU+LmNscy0xe2ZpbGw6I2ZmZjt9LmNscy0ye2ZpbGw6IzQ0NDt9PC9zdHlsZT48L2RlZnM+PHRpdGxlPmFycm93czwvdGl0bGU+PHJlY3QgY2xhc3M9ImNscy0xIiB3aWR0aD0iNC45NSIgaGVpZ2h0PSIxMCIvPjxwb2x5Z29uIGNsYXNzPSJjbHMtMiIgcG9pbnRzPSIxLjQxIDQuNjcgMi40OCAzLjE4IDMuNTQgNC42NyAxLjQxIDQuNjciLz48cG9seWdvbiBjbGFzcz0iY2xzLTIiIHBvaW50cz0iMy41NCA1LjMzIDIuNDggNi44MiAxLjQxIDUuMzMgMy41NCA1LjMzIi8+PC9zdmc+) no-repeat 95% 50%;
+    -moz-appearance: none; 
+    -webkit-appearance: none; 
+    appearance: none;
+}
 .signin-container {
     display: flex;
     flex-direction: column;
@@ -97,56 +113,18 @@ form {
     color: black;
 }
 
-#modal {
-    position: absolute;
-    bottom: 30px;
-    right: 30px;
-    border: 1px solid red;
-    background-color: red;
-    color: white;
+#error-message {
+    padding: 10px;
+    background-color: #f2dede;
+    border: solid 1px #ebccd1;
     border-radius: 10px;
-
-    display: flex;
-    gap: 20px;
-    align-items: center;
-    padding: 10px 20px;
-    padding-right: 120px;
-
-    transition: transform 0.5s ease, left 0.5s ease;
+    color: #b04442;
 }
-#error-icon {
-    font-size: 18px;
-    background-color: transparent;
-    border: none;
-    opacity: 0.9;
-    transition: all 0.4s ease;
-}
-#modal p {
-    font-size: 1rem;
+#error-message h4 {
+    font-size: 13px;
     font-weight: 500;
 }
-
-#modal.slide-in {
-    animation: slideIn 0.4s forwards;
-}
-#modal.slide-out {
-    animation: slideOut 0.4s forwards;
-}
-
-@keyframes slideIn {
-    from {
-        transform: translateX(100%);
-    }
-    to {
-        transform: translateX(0);
-    }
-}
-
-@keyframes slideOut {
-    from {
-        transform: translateX(0);
-    }
-    to {
-        transform: translateX(100%);
-    }
+#error-message p {
+    font-size: 12px;
+    font-weight: 300;
 }
