@@ -44,6 +44,7 @@
 }
 .nav-btn {
     display: flex;
+    align-items: center;
     gap: 10px;
     color: #6F6F6F;
     border-radius: 6px;
@@ -52,6 +53,7 @@
 }
 .nav-btn-icon {
     font-size: 18px;
+    display: flex;
 }
 .nav-btn p {
     font-weight: 500;
@@ -84,7 +86,7 @@
 }
 .info-btn-icon {
     font-size: 18px;
-    margin-top: 3px;
+    display: flex;
 }
 .info-btn p {
     font-weight: 500;
