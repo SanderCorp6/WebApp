@@ -27,7 +27,6 @@ function LoginScreen () {
 
             if (data) {
                 localStorage.setItem("user", JSON.stringify(data.user));
-                navigate('/');
                 window.location.reload();
             }
         } catch (error) {

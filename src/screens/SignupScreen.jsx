@@ -28,7 +28,6 @@ function SignupScreen () {
             const data = await response.json();
 
             localStorage.setItem("user", JSON.stringify(data.user));
-            navigate('/')
             window.location.reload();
         } catch (error) {
             setMessage(error.message);
