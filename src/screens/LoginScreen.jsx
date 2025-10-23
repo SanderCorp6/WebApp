@@ -14,7 +14,7 @@ function LoginScreen () {
     const handleLogin = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch(`${API_URL}/auth/signup`, {
+            const response = await fetch(`${API_URL}/auth/login`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ email, password }),
