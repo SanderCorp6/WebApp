@@ -1,8 +1,12 @@
 FROM node:alpine as builder
 # Set the working directory to /app inside the container
 WORKDIR /app
+
 # Copy app files
 COPY . .
+
+ARG VITE_API_URL
+ENV VITE_API_URL=$VITE_API_URL
 # Install dependencies (npm ci makes sure the exact versions in the lockfile gets installed)
 RUN npm ci 
 # Build the app
