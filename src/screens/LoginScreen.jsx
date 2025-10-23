@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/LoginScreen.css'
 
+const API_URL = 'https://api.samuelconra.com'
+
 function LoginScreen () {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -12,7 +14,7 @@ function LoginScreen () {
     const handleLogin = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch('/api/auth/login', {
+            const response = await fetch(`${API_URL}/auth/signup`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ email, password }),
