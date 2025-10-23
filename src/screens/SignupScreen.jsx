@@ -2,8 +2,6 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/LoginScreen.css'
 
-const API_URL = import.meta.env.VITE_API_URL;
-
 function SignupScreen () {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
@@ -16,7 +14,7 @@ function SignupScreen () {
     const handleSingup = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch(`${API_URL}/auth/signup`, {
+            const response = await fetch('/api/auth/signup', {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ name, email, password, role }),
