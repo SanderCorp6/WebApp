@@ -3,7 +3,7 @@ const API_URL = "http://localhost:3000";
 const handleResponse = async (response) => {
     if (!response.ok) {
         try {
-        const errorData = await response.json();
+            const errorData = await response.json();
             throw new Error(errorData.message || 'Error en la solicitud');
         } catch (e) {
             console.log(`Response Error: ${e.message}`);

@@ -7,7 +7,7 @@ function SignupPage () {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [role, setRole] = useState('RRHH Admin');
+    const [role, setRole] = useState('Administrator');
     const [isModalVisible, setIsModalVisible] = useState(false)
     const [message, setMessage] = useState('');
 
@@ -27,7 +27,7 @@ function SignupPage () {
             setIsModalVisible(true);
         }
     };
-    
+
     return (
         <main>
             <section id='forms-container' className={isModalVisible ? 'forms-error': ''}>
@@ -87,7 +87,8 @@ function SignupPage () {
                             value={role} 
                             onChange={(e) => setRole(e.target.value)}
                             required>
-                            <option value="RRHH Admin">RRHH Admin</option>
+                            <option value="Administrator">Administrator</option>
+                            <option value="RRHH">RRHH</option>
                             <option value="Employee">Employee</option>
                         </select>
                     </div>

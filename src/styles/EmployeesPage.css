@@ -123,3 +123,90 @@
     font-size: 12px;
     font-weight: 500;
 }
+
+
+
+.employees-table .headers h3 {
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+.employees-table .headers h3:not(.selected) {
+    color: #bbbbbb;
+}
+.employees-table .headers h3:not(.selected):hover {
+    color: #888888;
+}
+
+.table-container {
+    width: 100%;
+    overflow-x: auto; 
+    border: 1px solid #E7E7E7;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+table thead tr {
+    background-color: #fafafa;
+}
+
+table th, table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #E7E7E7;
+}
+
+table th {
+    font-weight: 600;
+    color: #555;
+}
+
+table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+table tbody tr:hover {
+    background-color: #f9f9f9;
+}
+
+.status-tag {
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-weight: 500;
+    font-size: 12px;
+}
+.status-tag.status-active {
+    background-color: #e0f5ea;
+    color: #008a4a;
+}
+.status-tag.status-inactive {
+    background-color: #fdeaea;
+    color: #d92d20;
+}
+
+.action-btn {
+    background: transparent;
+    border: 1px solid #E7E7E7;
+    border-radius: 5px;
+    padding: 2px 8px;
+    cursor: pointer;
+    font-weight: 600;
+}
+.action-btn:hover {
+    background-color: #f0f0f0;
+}
+
+/* Mensaje de error */
+.error-message {
+    color: #d92d20;
+    font-weight: 500;
+    padding: 10px;
+    background-color: #fdeaea;
+    border: 1px solid #f9c0bc;
+    border-radius: 8px;
+}
