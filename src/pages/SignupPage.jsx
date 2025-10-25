@@ -1,45 +1,33 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import '../styles/LoginScreen.css'
+import { useNavigate, Link } from 'react-router-dom';
+import { useAuth } from '../hooks/useAuth';
+import '../styles/LoginPage.css';
 
-const API_URL = 'https://api.samuelconra.com'
-
-function SignupScreen () {
+function SignupPage () {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [role, setRole] = useState('RRHH Admin');
     const [isModalVisible, setIsModalVisible] = useState(false)
     const [message, setMessage] = useState('');
+
     const navigate = useNavigate();
+    const { signup } = useAuth();
 
-    const handleSingup = async (e) => {
+    const handleSignup = async (e) => {
         e.preventDefault();
+        setIsModalVisible(false);
+        setMessage('');
+
         try {
-            const response = await fetch(`${API_URL}/auth/signup`, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ name, email, password, role }),
-            });
-
-            if (!response.ok) {
-                setIsModalVisible(true);
-                throw new Error("Server Error");
-            }
-
-            const data = await response.json();
-
-            localStorage.setItem("user", JSON.stringify(data.user));
-            window.location.reload();
+            await signup(name, email, password, role);
+            navigate('/');
         } catch (error) {
-            setMessage(error.message);
+            setMessage(error.message || 'Error al crear la cuenta.');
+            setIsModalVisible(true);
         }
     };
-
-    const handleLogin = () => {
-        navigate('/login');
-    }
-
+    
     return (
         <main>
             <section id='forms-container' className={isModalVisible ? 'forms-error': ''}>
@@ -57,7 +45,7 @@ function SignupScreen () {
                     )
                 }
 
-                <form onSubmit={handleSingup}>
+                <form onSubmit={handleSignup}>
                     <div className="input-container">
                         <label htmlFor="name">Name</label>
                         <input 
@@ -106,7 +94,7 @@ function SignupScreen () {
 
                     <div className="signin-container">
                         <button type='submit'>Sign up</button>
-                        <p>You already have an account? <a onClick={handleLogin}>Sign in</a></p>
+                        <p>You already have an account? <Link to="/login" className='link'>Sign in</Link></p>
                     </div>
                 </form>
             </section>
@@ -114,4 +102,4 @@ function SignupScreen () {
     )
 }
 
-export default SignupScreen;
+export default SignupPage;

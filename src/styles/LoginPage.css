@@ -106,7 +106,7 @@ form {
     font-size: 0.7rem;
     font-weight: 300;
 }
-.signin-container p a {
+.signin-container .link {
     text-decoration: underline;
     cursor: pointer;
     font-weight: 600;

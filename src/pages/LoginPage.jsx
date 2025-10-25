@@ -1,44 +1,30 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import '../styles/LoginScreen.css'
+import { useNavigate, Link } from 'react-router-dom';
+import { useAuth } from '../hooks/useAuth';
+import '../styles/LoginPage.css';
 
-const API_URL = 'https://api.samuelconra.com'
-
-function LoginScreen () {
+function LoginPage () {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [isModalVisible, setIsModalVisible] = useState(false);
     const [message, setMessage] = useState('');
+
     const navigate = useNavigate();
+    const { login } = useAuth();
 
     const handleLogin = async (e) => {
         e.preventDefault();
+        setIsModalVisible(false);
+        setMessage('');
+
         try {
-            const response = await fetch(`${API_URL}/auth/login`, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ email, password }),
-            });
-
-            if (!response.ok) {
-                setIsModalVisible(true);
-                throw new Error("Invalid email or password.");
-            }
-
-            const data = await response.json();
-
-            if (data) {
-                localStorage.setItem("user", JSON.stringify(data.user));
-                window.location.reload();
-            }
+            await login(email, password);
+            navigate('/');
         } catch (error) {
-            setMessage(error.message);
+            setMessage(error.message || 'Invalid email or password.');
+            setIsModalVisible(true);
         }
     };
-
-    const handleSingup = () => {
-        navigate('/signup');
-    }
 
     return (
         <main>
@@ -82,7 +68,7 @@ function LoginScreen () {
 
                     <div className="signin-container">
                         <button type='submit'>Sign in</button>
-                        <p>Don't have an account? <a onClick={handleSingup}>Sign up</a></p>
+                        <p>Don't have an account? <Link to={"/signup"} className='link'>Sign up</Link></p>
                     </div>
                 </form>
             </section>
@@ -90,4 +76,4 @@ function LoginScreen () {
     );
 }
 
-export default LoginScreen;
+export default LoginPage;

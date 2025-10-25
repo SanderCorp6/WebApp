@@ -1,7 +1,7 @@
 import { FiSidebar } from "react-icons/fi";
-import '../styles/VacationsScreen.css'
+import '../styles/VacationsPage.css'
 
-function VacationsScreen () {
+function VacationsPage () {
     return (
         <>
             <div id="view-info">
@@ -12,4 +12,4 @@ function VacationsScreen () {
     )
 }
 
-export default VacationsScreen;
+export default VacationsPage;
