@@ -1,13 +1,13 @@
-const API_URL = "http://localhost:3000";
+const API_URL = "https://api.samuelconra.com";
 
 const handleResponse = async (response) => {
     if (!response.ok) {
         try {
             const errorData = await response.json();
-            throw new Error(errorData.message || 'Error en la solicitud');
+            throw new Error(errorData.message || 'Request Error');
         } catch (e) {
             console.log(`Response Error: ${e.message}`);
-            throw new Error(response.statusText || 'Error en la solicitud');
+            throw new Error(response.statusText || 'Request Error');
         }
     }
 
