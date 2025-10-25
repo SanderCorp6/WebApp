@@ -1,16 +1,15 @@
 import { BsPeople, BsPeopleFill, BsCalendar3Week, BsCalendar3WeekFill, BsTags, BsFillTagsFill } from 'react-icons/bs';
 import { FiSettings } from "react-icons/fi";
 import SidebarNavLink from './SidebarNavLink';
+import { useAuth } from '../hooks/useAuth';
 import '../styles/Sidebar.css'
 
 function Sidebar () {
-    const user = JSON.parse(localStorage.getItem("user"));
+    const { user, logout } = useAuth();
 
     const handleLogout = () => {
-        localStorage.removeItem("user");
-        window.location.reload();
+        logout();
     }
-    {/* <button className="fa-solid fa-arrow-right-from-bracket" id='logout-btn' ></button> */}
 
     return (
         <section id='sidebar'>

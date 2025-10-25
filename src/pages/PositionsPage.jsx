@@ -1,15 +1,15 @@
 import { FiSidebar } from "react-icons/fi";
-import '../styles/EmployeesScreen.css'
+import '../styles/PositionsPage.css'
 
-function EmployeesScreen () {
+function PositionsPage () {
     return (
         <>
             <div id="view-info">
                 <FiSidebar id="sidebar-icon"/>
-                <p>Home / Employees</p>
+                <p>Home / Positions</p>
             </div>
         </>
     )
 }
 
-export default EmployeesScreen;
+export default PositionsPage;
