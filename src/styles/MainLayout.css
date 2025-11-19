@@ -11,6 +11,12 @@ main {
 
     background-color: #fafafa;
     color: black;
+
+    overflow-x: hidden;
+}
+
+main.sidebar-hidden #sidebar {
+    margin-left: -320px;
 }
 
 #logout-btn{
