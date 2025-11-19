@@ -1,50 +1,39 @@
 import '../styles/EmployeesPage.css';
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { FiSidebar } from "react-icons/fi";
-import { FaUsers } from "react-icons/fa";
-import { useAuth } from '../hooks/useAuth';
 import { getEmployees, getEmployeesStats } from '../api/employeeService';
+import { useQuery } from '@tanstack/react-query';
 import EmployeeTable from '../components/EmployeeTable';
 import { useOutletContext } from "react-router-dom";
-import toast from "react-hot-toast";
 
 function EmployeesPages() {
     const { toggleSidebar } = useOutletContext();
-
-    const { user } = useAuth(); //
-    const [allEmployees, setAllEmployees] = useState([]);
-    const [stats, setStats] = useState({});
-    const [loading, setLoading] = useState(true);
     const [statusFilter, setStatusFilter] = useState('Active');
 
-    useEffect(() => {
-        const fetchEmployees = async () => {
-            setLoading(true);
-            try {
-                const data = await getEmployees(user.token, { status: statusFilter });
-                setAllEmployees(data.employees);
-            } catch {
-                toast.error("Error loading employees.");
-            } finally {
-                setLoading(false);
-            }
-        };
+    const { 
+        data: employeesData, 
+        isLoading: isLoadingEmployees, 
+        isError: isErrorEmployees
+    } = useQuery({
+        queryKey: ['employees', statusFilter],
+        queryFn: () => getEmployees({ status: statusFilter }),
+        staleTime: 1000 * 60 * 5,
+        keepPreviousData: true,
+    });
 
-        fetchEmployees();
-    }, [user, statusFilter]);
+    const { 
+        data: statsData, 
+        isLoading: isLoadingStats 
+    } = useQuery({
+        queryKey: ['employeesStats'],
+        queryFn: getEmployeesStats,
+        staleTime: 1000 * 60 * 5,
+    });
 
-    useEffect(() => {
-        const fetchStats = async () => {
-            try {
-                const data = await getEmployeesStats(user.token);
-                setStats(data);
-            } catch  {
-                toast.error("Error loading stats.");
-            }
-        }
+    const allEmployees = employeesData?.employees || [];
+    const stats = statsData || { activeEmployees: 0, inactiveEmployees: 0, totalEmployees: 0 };
 
-        fetchStats();
-    }, [user]);
+    const isInitialLoading = isLoadingEmployees || isLoadingStats;
 
     return (
         <div className="employees-page">
@@ -67,19 +56,30 @@ function EmployeesPages() {
                             className={statusFilter === 'Active' ? 'selected' : ''}
                             onClick={() => setStatusFilter('Active')}
                         >
-                            Active<span>({stats.activeEmployees})</span>
+                            Active
+                            <span>
+                                ({isLoadingStats ? '...' : stats.activeEmployees})
+                            </span>
                         </h3>
                         <h3 
                             className={statusFilter === 'Inactive' ? 'selected' : ''}
                             onClick={() => setStatusFilter('Inactive')}
                         >
-                            Inactive<span>({stats.inactiveEmployees})</span>
+                            Inactive
+                            <span>
+                                ({isLoadingStats ? '...' : stats.inactiveEmployees})
+                            </span>
                         </h3>
                     </div>
 
-                    {loading && <p>Cargando empleados...</p>}
+                    {/* Manejo de carga y errores */}
+                    {isInitialLoading && <p>Loading Data...</p>}
                     
-                    {!loading && (
+                    {isErrorEmployees && (
+                        <p className="error-message">Error loading employee list.</p>
+                    )}
+                    
+                    {!isInitialLoading && !isErrorEmployees && (
                         <EmployeeTable employees={allEmployees} />
                     )}
                 </div>
