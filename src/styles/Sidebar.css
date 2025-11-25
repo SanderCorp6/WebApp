@@ -1,5 +1,5 @@
 #sidebar {
-    width: 320px;
+    width: 310px;
     height: 100%;
     background-color: transparent;
     padding: 10px;
@@ -17,8 +17,8 @@
     align-items: center;
 }
 .user-image-border {
-    width: 60px;
-    height: 60px;
+    width: 50px;
+    height: 50px;
     border: 1px solid #57575755;
     border-radius: 50%;
     padding: 2px;
@@ -31,11 +31,11 @@
     background-color: #57575725;
 }
 .user-data h1 {
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 500;
 }
 .user-data p {
-    font-size: 15px;
+    font-size: 13px;
     font-weight: 400;
 }
 
@@ -47,23 +47,24 @@
 .nav-btn {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
     color: #6F6F6F;
-    border-radius: 6px;
+    border-radius: 8px;
     text-decoration: none;
-    padding: 7px 10px;
+    padding: 10px 10px;
 }
 .nav-btn-icon {
-    font-size: 18px;
+    font-size: 16px;
     display: flex;
 }
 .nav-btn p {
+    font-size: 14px;
     font-weight: 500;
 }
 .nav-btn.active {
     color: black;
     background-color: #EBEBEB;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    /* box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3); */
 }
 
 .info-section {
@@ -87,7 +88,7 @@
     color: rgb(63, 63, 63);
 }
 .info-btn-icon {
-    font-size: 18px;
+    font-size: 16px;
     display: flex;
 }
 .info-btn p {
