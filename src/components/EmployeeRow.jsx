@@ -12,8 +12,9 @@ function EmployeeRow({ employee }) {
             <td>{fullName}</td>
             <td>{employee.position}</td>
             <td>{employee.department_name}</td>
-            <td>{employee.email}</td>
             <td><StatusTag status={employee.status} /></td>
+            <td>{employee.hire_date}</td>
+            <td>{employee.salary}</td>
             <td>
                 <button className="action-btn">...</button>
             </td>

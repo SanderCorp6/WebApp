@@ -112,19 +112,3 @@ form {
     font-weight: 600;
     color: black;
 }
-
-#error-message {
-    padding: 10px;
-    background-color: #f2dede;
-    border: solid 1px #ebccd1;
-    border-radius: 10px;
-    color: #b04442;
-}
-#error-message h4 {
-    font-size: 13px;
-    font-weight: 500;
-}
-#error-message p {
-    font-size: 12px;
-    font-weight: 300;
-}

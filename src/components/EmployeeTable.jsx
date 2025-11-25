@@ -13,8 +13,9 @@ function EmployeeTable({ employees }) {
                         <th>Name</th>
                         <th>Position</th>
                         <th>Department</th>
-                        <th>Email</th>
                         <th>Status</th>
+                        <th>Hire Date</th>
+                        <th>Salary</th>
                         <th>Actions</th>
                     </tr>
                 </thead>

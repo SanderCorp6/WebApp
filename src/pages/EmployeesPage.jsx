@@ -1,101 +1,146 @@
-import { useState, useEffect, useMemo } from "react";
+import '../styles/EmployeesPage.css';
+import { useState } from "react";
 import { FiSidebar } from "react-icons/fi";
-import { FaUsers } from "react-icons/fa";
-import { useAuth } from '../hooks/useAuth'; //
-import { getEmployees } from '../api/employeeService';
+import { getEmployees, getEmployeesStats } from '../api/employeeService';
+import { useQuery } from '@tanstack/react-query';
 import EmployeeTable from '../components/EmployeeTable';
-import '../styles/EmployeesPage.css'; //
+import { useOutletContext } from "react-router-dom";
+import DashboardCard from '../components/DashboardCard';
+import { LuUsersRound, LuUserRoundCheck, LuUserRoundX, LuBuilding2 } from "react-icons/lu";
+import { IoSearch } from "react-icons/io5";
 
 function EmployeesPages() {
-    const { user } = useAuth(); //
-    const [allEmployees, setAllEmployees] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
-    const [statusFilter, setStatusFilter] = useState('Active');
+    const { toggleSidebar } = useOutletContext();
+    const [statusFilter, setStatusFilter] = useState('');
+    const [sortBy, setSortBy] = useState('name');
+    const [searchTerm, setSearchTerm] = useState('');
 
-    useEffect(() => {
-        const fetchEmployees = async () => {
-            if (!user?.token) {
-                setLoading(false);
-                setError("No estás autenticado.");
-                return;
-            }
+    const { 
+        data: employeesData, 
+        isLoading: isLoadingEmployees, 
+        isError: isErrorEmployees
+    } = useQuery({
+        queryKey: ['employees', statusFilter, sortBy, searchTerm],
+        queryFn: () => getEmployees({ 
+            status: statusFilter === 'All' ? '' : statusFilter,
+            sortBy,
+            search: searchTerm
+        }),
+        staleTime: 1000 * 60 * 5,
+        keepPreviousData: true,
+    });
 
-            setLoading(true);
-            setError(null);
-            try {
-                const data = await getEmployees(user.token, { status: statusFilter });
-                setAllEmployees(data.employees);
-            } catch (err) {
-                setError(err.message || "Error al cargar los empleados.");
-            } finally {
-                setLoading(false);
-            }
-        };
+    const { 
+        data: statsData, 
+        isLoading: isLoadingStats 
+    } = useQuery({
+        queryKey: ['employeesStats'],
+        queryFn: getEmployeesStats,
+        staleTime: 1000 * 60 * 5,
+    });
 
-        fetchEmployees();
-    }, [user, statusFilter]);
-
-    const counts = useMemo(() => {
-        const activeCount = statusFilter === 'Active' ? allEmployees.length : 0;
-        const inactiveCount = statusFilter === 'Inactive' ? allEmployees.length : 0;
-        const totalCount = activeCount + inactiveCount;
-        
-        return {
-            total: totalCount,
-            active: statusFilter === 'Active' ? allEmployees.length : "0",
-            inactive: statusFilter === 'Inactive' ? allEmployees.length : "0"
-        }
-    }, [allEmployees, statusFilter]);
-
+    const allEmployees = employeesData?.employees || [];
+    const stats = statsData || { activeEmployees: 0, inactiveEmployees: 0, totalEmployees: 0 };
+    const statsList = [
+        { statistic: 'Total Employees', value: stats.totalEmployees || 0, icon: <LuUsersRound /> },
+        { statistic: 'Active', value: stats.activeEmployees || 0, icon: <LuUserRoundCheck /> },
+        { statistic: 'Inactive', value: stats.inactiveEmployees || 0, icon: <LuUserRoundX /> },
+        { statistic: 'Departments', value: stats.totalDepartments || 0, icon: <LuBuilding2 /> },
+    ]
+    const isInitialLoading = isLoadingEmployees || isLoadingStats;
 
     return (
         <div className="employees-page">
             <div id="view-info">
-                <FiSidebar id="sidebar-icon" />
+                <FiSidebar 
+                    id="sidebar-icon" 
+                    onClick={toggleSidebar} 
+                    style={{ cursor: 'pointer' }}/>
                 <p>Home / Employees</p>
             </div>
 
             <div className="employees-content">
-                <h1>Employees</h1>
+                {/* Overview */}
+                <div className="overview-section">
+                    {
+                        statsList.map((statistic) => (
+                            <DashboardCard
+                                key={statistic.statistic}
+                                statistic={statistic.statistic}
+                                value={statistic.value}
+                                icon={statistic.icon}
+                            />
+                        ))
+                    }
+                </div>
 
-                {/* Tarjeta de Resumen (Overview) */}
-                <div className="overview">
-                    <div className="card">
-                        <div className="overview-content main-info">
-                            <div><FaUsers className="overview-icon" /><h3>Total</h3></div>
-                            <p>{counts.total}</p>
+                {/* Filters and Search Bar */}
+                <div className="filters-section">
+                    <div className="creation-and-search">
+                        {/* search bar */}
+                        <div className="search-bar">
+                            <IoSearch className='icon'/>
+                            <input 
+                                type="text" 
+                                placeholder="Search employees by name, position or department"
+                                value={searchTerm}
+                                onChange={(e) => setSearchTerm(e.target.value)} />
                         </div>
-                        <div className="divider"></div>
-                        <div className="overview-content details">
-                            <div><h3>Active</h3><p>{counts.active}</p></div>
-                            <div className="divider"></div>
-                            <div><h3>Inactive</h3><p>{counts.inactive}</p></div>
+                        {/* add employee button */}
+                        <button>Add Employee</button>
+                    </div>
+
+                    <div className="filters">
+                        {/* status filters */}
+                        <div className="filter-item">
+                            <label htmlFor="status-filter">Status:</label>
+                            <button type="button" className='filter-btn' onClick={() => setStatusFilter("All")}>All</button>
+                            <button type="button" className='filter-btn' onClick={() => setStatusFilter("Active")}>Active</button>
+                            <button type="button" className='filter-btn' onClick={() => setStatusFilter("Inactive")}>Inactive</button>
+                        </div>
+
+                        {/* sort by filters */}
+                        <div className="filter-item">
+                            <label htmlFor="sortby-filter">Sort By:</label>
+                            <button type="button" className='filter-btn' onClick={() => setSortBy("name")}>Name</button>
+                            <button type="button" className='filter-btn' onClick={() => setSortBy("position")}>Position</button>
+                            <button type="button" className='filter-btn' onClick={() => setSortBy("department")}>Department</button>
+                            <button type="button" className='filter-btn' onClick={() => setSortBy("status")}>Status</button>
                         </div>
                     </div>
                 </div>
 
-                {/* Tabla de Empleados */}
+                {/* Employees Table */}
                 <div className="employees-table">
-                    <div className="headers">
+                    {/* <div className="headers">
                         <h3 
                             className={statusFilter === 'Active' ? 'selected' : ''}
                             onClick={() => setStatusFilter('Active')}
                         >
-                            Active<span>({statusFilter === 'Active' ? allEmployees.length : '0'})</span>
+                            Active
+                            <span>
+                                ({isLoadingStats ? '...' : stats.activeEmployees})
+                            </span>
                         </h3>
                         <h3 
                             className={statusFilter === 'Inactive' ? 'selected' : ''}
                             onClick={() => setStatusFilter('Inactive')}
                         >
-                            Inactive<span>({statusFilter === 'Inactive' ? allEmployees.length : '0'})</span>
+                            Inactive
+                            <span>
+                                ({isLoadingStats ? '...' : stats.inactiveEmployees})
+                            </span>
                         </h3>
-                    </div>
+                    </div> */}
 
-                    {loading && <p>Cargando empleados...</p>}
-                    {error && <p className="error-message">{error}</p>}
+                    {/* Manejo de carga y errores */}
+                    {isInitialLoading && <p>Loading Data...</p>}
                     
-                    {!loading && !error && (
+                    {isErrorEmployees && (
+                        <p className="error-message">Error loading employee list.</p>
+                    )}
+                    
+                    {!isInitialLoading && !isErrorEmployees && (
                         <EmployeeTable employees={allEmployees} />
                     )}
                 </div>

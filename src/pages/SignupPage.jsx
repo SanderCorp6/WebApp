@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
+import toast from 'react-hot-toast';
 import '../styles/LoginPage.css';
 
 function SignupPage () {
@@ -8,42 +9,33 @@ function SignupPage () {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [role, setRole] = useState('Administrator');
-    const [isModalVisible, setIsModalVisible] = useState(false)
-    const [message, setMessage] = useState('');
 
     const navigate = useNavigate();
     const { signup } = useAuth();
 
     const handleSignup = async (e) => {
         e.preventDefault();
-        setIsModalVisible(false);
-        setMessage('');
-
-        try {
-            await signup(name, email, password, role);
-            navigate('/');
-        } catch (error) {
-            setMessage(error.message || 'Error al crear la cuenta.');
-            setIsModalVisible(true);
-        }
+        
+        toast.promise(
+            signup(name, email, password, role),
+            {
+                loading: 'Signing up...',
+                success: () => {
+                    navigate('/');
+                    return 'Successfully signed up!';
+                },
+                error: (err) => err.message || 'Error signing up.'
+            }
+        );
     };
 
     return (
         <main>
-            <section id='forms-container' className={isModalVisible ? 'forms-error': ''}>
+            <section id='forms-container'>
                 <div id="header">
-                    <h1>Welcome Back</h1>
-                    <h4>Please enter your details to sign in</h4>
+                    <h1>Welcome to Sander</h1>
+                    <h4>Please enter your details to sign up</h4>
                 </div>
-
-                {
-                    isModalVisible && (
-                        <div id="error-message">
-                            <h4>{message}</h4>
-                            <p>Please try again.</p>
-                        </div>
-                    )
-                }
 
                 <form onSubmit={handleSignup}>
                     <div className="input-container">
