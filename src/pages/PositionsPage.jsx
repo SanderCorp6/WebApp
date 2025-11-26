@@ -1,13 +1,10 @@
-import { FiSidebar } from "react-icons/fi";
 import '../styles/PositionsPage.css'
+import PageHeader from "../components/PageHeader";
 
 function PositionsPage () {
     return (
         <>
-            <div id="view-info">
-                <FiSidebar id="sidebar-icon"/>
-                <p>Home / Positions</p>
-            </div>
+            <PageHeader title="Positions" />
         </>
     )
 }

@@ -1,18 +1,3 @@
-#view-info {
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
-    color: #A7A7A7;
-    align-items: center;
-}
-#sidebar-icon {
-    font-size: 18px;
-}
-#view-info p {
-    font-weight: 500;
-    font-size: 14px;
-}
-
 .employees-page {
     display: flex;
     gap: 15px;

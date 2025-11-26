@@ -1,161 +1,51 @@
 import '../styles/EmployeesPage.css';
 import { useState } from "react";
-import { FiSidebar } from "react-icons/fi";
-import { getEmployees, getEmployeesStats } from '../api/employeeService';
-import { useQuery } from '@tanstack/react-query';
 import EmployeeTable from '../components/EmployeeTable';
-import { useOutletContext } from "react-router-dom";
-import DashboardCard from '../components/DashboardCard';
-import { LuUsersRound, LuUserRoundCheck, LuUserRoundX, LuBuilding2 } from "react-icons/lu";
-import { IoSearch } from "react-icons/io5";
+import EmployeeToolbar from '../components/EmployeeToolBar';
+import StatsOverview from '../components/StatsOverview';
+import PageHeader from '../components/PageHeader';
+import { useEmployees } from '../hooks/useEmployees';
 
 function EmployeesPages() {
-    const { toggleSidebar } = useOutletContext();
     const [statusFilter, setStatusFilter] = useState('All');
     const [sortBy, setSortBy] = useState('name');
     const [searchTerm, setSearchTerm] = useState('');
 
-    const { 
-        data: employeesData, 
-        isLoading: isLoadingEmployees, 
-        isError: isErrorEmployees
-    } = useQuery({
-        queryKey: ['employees', statusFilter, sortBy, searchTerm],
-        queryFn: () => getEmployees({ 
-            status: statusFilter === 'All' ? '' : statusFilter,
-            sortBy,
-            search: searchTerm
-        }),
-        staleTime: 1000 * 60 * 5,
-        keepPreviousData: true,
+    const { employees, stats, isLoading, isError } = useEmployees({
+        statusFilter, 
+        sortBy, 
+        searchTerm
     });
-
-    const { 
-        data: statsData, 
-        isLoading: isLoadingStats 
-    } = useQuery({
-        queryKey: ['employeesStats'],
-        queryFn: getEmployeesStats,
-        staleTime: 1000 * 60 * 5,
-    });
-
-    const allEmployees = employeesData?.employees || [];
-    const stats = statsData || { activeEmployees: 0, inactiveEmployees: 0, totalEmployees: 0 };
-    const statsList = [
-        { statistic: 'Total Employees', value: stats.totalEmployees || 0, icon: <LuUsersRound /> },
-        { statistic: 'Active', value: stats.activeEmployees || 0, icon: <LuUserRoundCheck /> },
-        { statistic: 'Inactive', value: stats.inactiveEmployees || 0, icon: <LuUserRoundX /> },
-        { statistic: 'Departments', value: stats.totalDepartments || 0, icon: <LuBuilding2 /> },
-    ]
-    const isInitialLoading = isLoadingEmployees || isLoadingStats;
 
     return (
         <div className="employees-page">
-            <div id="view-info">
-                <FiSidebar 
-                    id="sidebar-icon" 
-                    onClick={toggleSidebar} 
-                    style={{ cursor: 'pointer' }}/>
-                <p>Home / Employees</p>
-            </div>
+            <PageHeader title="Employees" />
 
             <div className="employees-content">
                 {/* Overview */}
-                <div className="overview-section">
-                    {
-                        statsList.map((statistic) => (
-                            <DashboardCard
-                                key={statistic.statistic}
-                                statistic={statistic.statistic}
-                                value={statistic.value}
-                                icon={statistic.icon}
-                            />
-                        ))
-                    }
-                </div>
+                <StatsOverview stats={stats} />
 
                 {/* Filters and Search Bar */}
-                <div className="filters-section">
-                    <div className="creation-and-search">
-                        {/* search bar */}
-                        <div className="search-bar">
-                            <IoSearch className='icon'/>
-                            <input 
-                                type="text" 
-                                placeholder="Search employees by name, position or department"
-                                value={searchTerm}
-                                onChange={(e) => setSearchTerm(e.target.value)} />
-                        </div>
-                        {/* add employee button */}
-                        <button>Add Employee</button>
-                    </div>
-
-                    <div className="filters">
-                        {/* status filters */}
-                        <div className="filter-item">
-                            <label htmlFor="status-filter">Status:</label>
-                            <button 
-                                className='filter-btn' 
-                                style={{ backgroundColor: (statusFilter === "All") && "#6f6f6f", color: (statusFilter === "All") && "white" }}
-                                onClick={() => setStatusFilter("All")}>
-                                All
-                            </button>
-                            <button 
-                                className='filter-btn' 
-                                style={{ backgroundColor: (statusFilter === "Active") && "#49de80", color: (statusFilter === "Active") && "white" }}
-                                onClick={() => setStatusFilter("Active")}>
-                                Active
-                            </button>
-                            <button 
-                                className='filter-btn' 
-                                style={{ backgroundColor: (statusFilter === "Inactive") && "#f57070", color: (statusFilter === "Inactive") && "white" }}
-                                onClick={() => setStatusFilter("Inactive")}>
-                                Inactive
-                            </button>
-                        </div>
-
-                        {/* sort by filters */}
-                        <div className="filter-item">
-                            <label htmlFor="sortby-filter">Sort By:</label>
-                            <button 
-                                className='filter-btn'
-                                style={{ backgroundColor: (sortBy === "name") && "#ebebeb", color: (sortBy === "name") && "black" }}
-                                onClick={() => setSortBy("name")}>
-                                Name
-                            </button>
-                            <button 
-                                className='filter-btn'
-                                style={{ backgroundColor: (sortBy === "position") && "#ebebeb", color: (sortBy === "position") && "black" }}
-                                onClick={() => setSortBy("position")}>
-                                Position
-                            </button>
-                            <button 
-                                className='filter-btn'
-                                style={{ backgroundColor: (sortBy === "department") && "#ebebeb", color: (sortBy === "department") && "black" }}
-                                onClick={() => setSortBy("department")}>
-                                Department
-                            </button>
-                            <button 
-                                className='filter-btn'
-                                style={{ backgroundColor: (sortBy === "status") && "#ebebeb", color: (sortBy === "status") && "black" }}
-                                onClick={() => setSortBy("status")}>
-                                Status
-                            </button>
-                        </div>
-                    </div>
-                </div>
+                <EmployeeToolbar
+                    searchTerm={searchTerm}
+                    setSearchTerm={setSearchTerm}
+                    statusFilter={statusFilter}
+                    setStatusFilter={setStatusFilter}
+                    sortBy={sortBy}
+                    setSortBy={setSortBy}
+                    onAddClick={() => { console.log("Add Employee clicked") }} />
 
                 {/* Employees Table */}
                 <div className="employees-table">
                     {/* Manejo de carga y errores */}
-                    {isInitialLoading && <p>Loading Data...</p>}
+                    {isLoading && <p>Loading Data...</p>}
                     
-                    {isErrorEmployees && (
+                    {isError && (
                         <p className="error-message">Error loading employee list.</p>
                     )}
                     
-                    {!isInitialLoading && !isErrorEmployees && (
-                        <EmployeeTable employees={allEmployees} />
+                    {!isLoading && !isError && (
+                        <EmployeeTable employees={employees} />
                     )}
                 </div>
             </div>

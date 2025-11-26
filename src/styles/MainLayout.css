@@ -43,3 +43,19 @@ main.sidebar-hidden #sidebar {
     border-radius: 10px;
     border: solid 1px #E7E7E7;
 }
+
+#view-info {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    color: #A7A7A7;
+    align-items: center;
+}
+#sidebar-icon {
+    font-size: 18px;
+    cursor: pointer;
+}
+#view-info p {
+    font-weight: 500;
+    font-size: 14px;
+}
