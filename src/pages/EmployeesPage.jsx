@@ -11,7 +11,7 @@ import { IoSearch } from "react-icons/io5";
 
 function EmployeesPages() {
     const { toggleSidebar } = useOutletContext();
-    const [statusFilter, setStatusFilter] = useState('');
+    const [statusFilter, setStatusFilter] = useState('All');
     const [sortBy, setSortBy] = useState('name');
     const [searchTerm, setSearchTerm] = useState('');
 
@@ -94,45 +94,59 @@ function EmployeesPages() {
                         {/* status filters */}
                         <div className="filter-item">
                             <label htmlFor="status-filter">Status:</label>
-                            <button type="button" className='filter-btn' onClick={() => setStatusFilter("All")}>All</button>
-                            <button type="button" className='filter-btn' onClick={() => setStatusFilter("Active")}>Active</button>
-                            <button type="button" className='filter-btn' onClick={() => setStatusFilter("Inactive")}>Inactive</button>
+                            <button 
+                                className='filter-btn' 
+                                style={{ backgroundColor: (statusFilter === "All") && "#6f6f6f", color: (statusFilter === "All") && "white" }}
+                                onClick={() => setStatusFilter("All")}>
+                                All
+                            </button>
+                            <button 
+                                className='filter-btn' 
+                                style={{ backgroundColor: (statusFilter === "Active") && "#49de80", color: (statusFilter === "Active") && "white" }}
+                                onClick={() => setStatusFilter("Active")}>
+                                Active
+                            </button>
+                            <button 
+                                className='filter-btn' 
+                                style={{ backgroundColor: (statusFilter === "Inactive") && "#f57070", color: (statusFilter === "Inactive") && "white" }}
+                                onClick={() => setStatusFilter("Inactive")}>
+                                Inactive
+                            </button>
                         </div>
 
                         {/* sort by filters */}
                         <div className="filter-item">
                             <label htmlFor="sortby-filter">Sort By:</label>
-                            <button type="button" className='filter-btn' onClick={() => setSortBy("name")}>Name</button>
-                            <button type="button" className='filter-btn' onClick={() => setSortBy("position")}>Position</button>
-                            <button type="button" className='filter-btn' onClick={() => setSortBy("department")}>Department</button>
-                            <button type="button" className='filter-btn' onClick={() => setSortBy("status")}>Status</button>
+                            <button 
+                                className='filter-btn'
+                                style={{ backgroundColor: (sortBy === "name") && "#ebebeb", color: (sortBy === "name") && "black" }}
+                                onClick={() => setSortBy("name")}>
+                                Name
+                            </button>
+                            <button 
+                                className='filter-btn'
+                                style={{ backgroundColor: (sortBy === "position") && "#ebebeb", color: (sortBy === "position") && "black" }}
+                                onClick={() => setSortBy("position")}>
+                                Position
+                            </button>
+                            <button 
+                                className='filter-btn'
+                                style={{ backgroundColor: (sortBy === "department") && "#ebebeb", color: (sortBy === "department") && "black" }}
+                                onClick={() => setSortBy("department")}>
+                                Department
+                            </button>
+                            <button 
+                                className='filter-btn'
+                                style={{ backgroundColor: (sortBy === "status") && "#ebebeb", color: (sortBy === "status") && "black" }}
+                                onClick={() => setSortBy("status")}>
+                                Status
+                            </button>
                         </div>
                     </div>
                 </div>
 
                 {/* Employees Table */}
                 <div className="employees-table">
-                    {/* <div className="headers">
-                        <h3 
-                            className={statusFilter === 'Active' ? 'selected' : ''}
-                            onClick={() => setStatusFilter('Active')}
-                        >
-                            Active
-                            <span>
-                                ({isLoadingStats ? '...' : stats.activeEmployees})
-                            </span>
-                        </h3>
-                        <h3 
-                            className={statusFilter === 'Inactive' ? 'selected' : ''}
-                            onClick={() => setStatusFilter('Inactive')}
-                        >
-                            Inactive
-                            <span>
-                                ({isLoadingStats ? '...' : stats.inactiveEmployees})
-                            </span>
-                        </h3>
-                    </div> */}
-
                     {/* Manejo de carga y errores */}
                     {isInitialLoading && <p>Loading Data...</p>}
                     
