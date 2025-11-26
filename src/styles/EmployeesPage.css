@@ -3,12 +3,6 @@
     gap: 15px;
     flex-direction: column;
 }
-.employees-content {
-    display: flex;
-    gap: 15px;
-    padding: 10px 20px;
-    flex-direction: column;
-}
 
 
 .table-container {
@@ -90,6 +84,7 @@ table tbody tr:hover {
 .overview-section {
     display: flex;
     gap: 15px;
+    margin-top: 10px;
 }
 .overview-section .dashboard-card {
     flex: 1;
@@ -134,8 +129,9 @@ table tbody tr:hover {
 .filters-section {
     display: flex;
     flex-direction: column;
-    background-color: #fafafa;
-    padding: 12px;
+    margin-top: 15px;
+    /* background-color: #fafafa;
+    padding: 12px; */
     border-radius: 7px;
 }
 .filters-section .creation-and-search {

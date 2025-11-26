@@ -44,7 +44,7 @@ function EmployeeToolbar({
                     <IoSearch className='icon'/>
                     <input 
                         type="text" 
-                        placeholder="Search employees..."
+                        placeholder="Search employees by name or email"
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)} />
                 </div>

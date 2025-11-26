@@ -21,33 +21,31 @@ function EmployeesPages() {
         <div className="employees-page">
             <PageHeader title="Employees" />
 
-            <div className="employees-content">
-                {/* Overview */}
-                <StatsOverview stats={stats} />
+            {/* Overview */}
+            <StatsOverview stats={stats} />
 
-                {/* Filters and Search Bar */}
-                <EmployeeToolbar
-                    searchTerm={searchTerm}
-                    setSearchTerm={setSearchTerm}
-                    statusFilter={statusFilter}
-                    setStatusFilter={setStatusFilter}
-                    sortBy={sortBy}
-                    setSortBy={setSortBy}
-                    onAddClick={() => { console.log("Add Employee clicked") }} />
+            {/* Filters and Search Bar */}
+            <EmployeeToolbar
+                searchTerm={searchTerm}
+                setSearchTerm={setSearchTerm}
+                statusFilter={statusFilter}
+                setStatusFilter={setStatusFilter}
+                sortBy={sortBy}
+                setSortBy={setSortBy}
+                onAddClick={() => { console.log("Add Employee clicked") }} />
 
-                {/* Employees Table */}
-                <div className="employees-table">
-                    {/* Manejo de carga y errores */}
-                    {isLoading && <p>Loading Data...</p>}
-                    
-                    {isError && (
-                        <p className="error-message">Error loading employee list.</p>
-                    )}
-                    
-                    {!isLoading && !isError && (
-                        <EmployeeTable employees={employees} />
-                    )}
-                </div>
+            {/* Employees Table */}
+            <div className="employees-table">
+                {/* Manejo de carga y errores */}
+                {isLoading && <p>Loading Data...</p>}
+                
+                {isError && (
+                    <p className="error-message">Error loading employee list.</p>
+                )}
+                
+                {!isLoading && !isError && (
+                    <EmployeeTable employees={employees} />
+                )}
             </div>
         </div>
     );

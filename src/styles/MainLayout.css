@@ -6,7 +6,6 @@ main {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    gap: 10px;
     padding: 10px;
 
     background-color: #fafafa;
@@ -16,7 +15,7 @@ main {
 }
 
 main.sidebar-hidden #sidebar {
-    margin-left: -320px;
+    margin-left: -310px;
 }
 
 #logout-btn{
@@ -39,9 +38,10 @@ main.sidebar-hidden #sidebar {
     width: 100%;
     height: 100%;
     background-color: white;
-    padding: 10px;
+    padding: 15px;
     border-radius: 10px;
     border: solid 1px #E7E7E7;
+    overflow: hidden;
 }
 
 #view-info {
@@ -58,4 +58,16 @@ main.sidebar-hidden #sidebar {
 #view-info p {
     font-weight: 500;
     font-size: 14px;
+}
+
+#view-info .header-content {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+}
+#view-info .header-content .arrow-icon {
+    font-size: 13px;
+}
+#view-info .header-content .page-title {
+    color: black;
 }

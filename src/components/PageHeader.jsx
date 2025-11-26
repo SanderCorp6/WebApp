@@ -1,4 +1,5 @@
 import { FiSidebar } from "react-icons/fi";
+import { IoIosArrowForward } from "react-icons/io";
 import { useOutletContext } from "react-router-dom";
 
 function PageHeader({ title }) {
@@ -10,7 +11,11 @@ function PageHeader({ title }) {
                 id="sidebar-icon" 
                 onClick={toggleSidebar} 
             />
-            <p>Home / {title}</p>
+            <div className="header-content">
+                <p>Home</p>
+                <IoIosArrowForward className="arrow-icon" />
+                <p className="page-title">{title}</p>
+            </div>
         </div>
     );
 }
