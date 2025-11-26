@@ -9,13 +9,24 @@ import { useEmployees } from '../hooks/useEmployees';
 function EmployeesPages() {
     const [statusFilter, setStatusFilter] = useState('All');
     const [sortBy, setSortBy] = useState('name');
+    const [sortDir, setSortDir] = useState('ASC');
     const [searchTerm, setSearchTerm] = useState('');
 
     const { employees, stats, isLoading, isError } = useEmployees({
         statusFilter, 
         sortBy, 
+        sortDir,
         searchTerm
     });
+
+    const handleSort = (columnKey) => {
+        if (sortBy === columnKey) {
+            setSortDir(prev => prev === 'ASC' ? 'DESC' : 'ASC');
+        } else {
+            setSortBy(columnKey);
+            setSortDir('ASC');
+        }
+    };
 
     return (
         <div className="employees-page">
@@ -30,8 +41,6 @@ function EmployeesPages() {
                 setSearchTerm={setSearchTerm}
                 statusFilter={statusFilter}
                 setStatusFilter={setStatusFilter}
-                sortBy={sortBy}
-                setSortBy={setSortBy}
                 onAddClick={() => { console.log("Add Employee clicked") }} />
 
             {/* Employees Table */}
@@ -44,7 +53,11 @@ function EmployeesPages() {
                 )}
                 
                 {!isLoading && !isError && (
-                    <EmployeeTable employees={employees} />
+                    <EmployeeTable 
+                        employees={employees} 
+                        sortBy={sortBy}
+                        sortDir={sortDir}
+                        onSort={handleSort} />
                 )}
             </div>
         </div>

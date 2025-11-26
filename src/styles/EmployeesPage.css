@@ -16,6 +16,8 @@ table {
     width: 100%;
     border-collapse: collapse;
     font-size: 14px;
+    color: #6f6f6f;
+    overflow-y: scroll;
 }
 
 table thead tr {
@@ -30,7 +32,11 @@ table th, table td {
 
 table th {
     font-weight: 600;
-    color: #555;
+    color: #6f6f6f;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;  
 }
 
 table tbody tr:last-child td {
@@ -57,12 +63,18 @@ table tbody tr:hover {
 }
 
 .action-btn {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+
     background: transparent;
     border: 1px solid #E7E7E7;
     border-radius: 5px;
-    padding: 2px 8px;
+    padding: 7px 8px;
     cursor: pointer;
-    font-weight: 600;
+    font-size: 13px;
+    color: #6f6f6f;
+    font-weight: 400;
 }
 .action-btn:hover {
     background-color: #f0f0f0;
@@ -89,7 +101,7 @@ table tbody tr:hover {
 .overview-section .dashboard-card {
     flex: 1;
     display: flex;
-    padding: 12px;
+    padding: 18px 12px;
     background-color: white;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     border-radius: 7px;
@@ -111,6 +123,7 @@ table tbody tr:hover {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    gap: 2px;
 }
 .overview-section .dashboard-card .details .statistic {
     font-size: 12px;

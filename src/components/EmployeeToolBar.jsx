@@ -20,21 +20,12 @@ const FilterButton = ({ value, filter, setFilter, color, defaultColor }) => {
 function EmployeeToolbar({ 
     searchTerm, setSearchTerm, 
     statusFilter, setStatusFilter, 
-    sortBy, setSortBy, 
     onAddClick 
 }) {
     const statusFilters = [
         { value: "All", color: "#6f6f6f" },
         { value: "Active", color: "#49de80" },
         { value: "Inactive", color: "#f57070" }
-    ]
-
-    const sortByOptions = [
-        "name",
-        "position",
-        "department",
-        "status",
-        "date"
     ]
 
     return (
@@ -65,22 +56,6 @@ function EmployeeToolbar({
                                 color={color}
                                 defaultColor="white" />
                         )
-                    }
-                </div>
-
-                {/* sort by filters */}
-                <div className="filter-item">
-                    <label htmlFor="sortby-filter">Sort By:</label>
-                    {
-                        sortByOptions.map((value) => (
-                            <FilterButton 
-                                key={value}
-                                value={value}
-                                setFilter={setSortBy}
-                                filter={sortBy}
-                                color="#ebebeb"
-                                defaultColor="black" />
-                        ))
                     }
                 </div>
             </div>
