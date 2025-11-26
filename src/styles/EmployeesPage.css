@@ -10,6 +10,7 @@
     overflow-x: auto; 
     border: 1px solid #E7E7E7;
     border-radius: 10px;
+    flex: 1;
 }
 
 table {
@@ -213,4 +214,19 @@ table tbody tr:hover {
     font-size: 12px;
     cursor: pointer;
     color: #6f6f6f;
+}
+.filters-section .filters .filter-item select {
+    background-color: white;
+    border-radius: 6px;
+    border: 1px solid #E7E7E7;
+    height: 25px;
+    font-size: 12px;
+    cursor: pointer;
+    color: #6f6f6f;
+}
+
+.filters-section .filters .filter-item select:focus {
+    outline: none;
+    background-color: #f5f5f5;
+    border-color: #A7A7A7;
 }

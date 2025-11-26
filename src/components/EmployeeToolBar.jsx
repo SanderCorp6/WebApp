@@ -20,7 +20,8 @@ const FilterButton = ({ value, filter, setFilter, color, defaultColor }) => {
 function EmployeeToolbar({ 
     searchTerm, setSearchTerm, 
     statusFilter, setStatusFilter, 
-    onAddClick 
+    departmentId, setDepartmentId,
+    departments, onAddClick 
 }) {
     const statusFilters = [
         { value: "All", color: "#6f6f6f" },
@@ -57,6 +58,18 @@ function EmployeeToolbar({
                                 defaultColor="white" />
                         )
                     }
+                </div>
+                <div className="filter-item">
+                    {/* department filters */}
+                    <label>Department:</label>
+                    <select onChange={(e) => setDepartmentId(e.target.value)} value={departmentId}>
+                        <option value="">All</option>
+                        {
+                            departments.map(({ id, name }) => 
+                                <option key={id} value={id}>{name}</option>
+                            )
+                        }
+                    </select>
                 </div>
             </div>
         </div>

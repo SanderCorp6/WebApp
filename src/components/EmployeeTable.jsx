@@ -20,19 +20,23 @@ function EmployeeTable({ employees, sortBy, sortDir, onSort }) {
         <div className="table-container">
             <table>
                 <thead>
-                    {columns.map((col) => (
-                            <th 
-                                key={col.label}
-                                onClick={() => col.key && onSort(col.key)}
-                                style={{ cursor: col.key ? 'pointer' : 'default', userSelect: 'none' }} >
-                                <div style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
-                                    {col.label}
-                                    {sortBy === col.key && (
-                                        sortDir === 'ASC' ? <IoIosArrowUp /> : <IoIosArrowDown />
-                                    )}
-                                </div>
-                            </th>
-                        ))}
+                    <tr>
+                        {
+                        columns.map((col) => (
+                                <th 
+                                    key={col.label}
+                                    onClick={() => col.key && onSort(col.key)}
+                                    style={{ cursor: col.key ? 'pointer' : 'default', userSelect: 'none' }} >
+                                    <div style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
+                                        {col.label}
+                                        {sortBy === col.key && (
+                                            sortDir === 'ASC' ? <IoIosArrowUp /> : <IoIosArrowDown />
+                                        )}
+                                    </div>
+                                </th>
+                            ))
+                        }
+                    </tr>
                 </thead>
                 <tbody>
                     {employees.map((employee) => (

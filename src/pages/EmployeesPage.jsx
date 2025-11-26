@@ -5,19 +5,23 @@ import EmployeeToolbar from '../components/EmployeeToolBar';
 import StatsOverview from '../components/StatsOverview';
 import PageHeader from '../components/PageHeader';
 import { useEmployees } from '../hooks/useEmployees';
+import { useDepartments } from '../hooks/useDepartments';
 
 function EmployeesPages() {
     const [statusFilter, setStatusFilter] = useState('All');
+    const [departmentId, setDepartmentId] = useState('');
     const [sortBy, setSortBy] = useState('name');
     const [sortDir, setSortDir] = useState('ASC');
     const [searchTerm, setSearchTerm] = useState('');
 
     const { employees, stats, isLoading, isError } = useEmployees({
         statusFilter, 
+        departmentId,
         sortBy, 
         sortDir,
         searchTerm
     });
+    const { departments } = useDepartments();
 
     const handleSort = (columnKey) => {
         if (sortBy === columnKey) {
@@ -41,6 +45,9 @@ function EmployeesPages() {
                 setSearchTerm={setSearchTerm}
                 statusFilter={statusFilter}
                 setStatusFilter={setStatusFilter}
+                departmentId={departmentId}
+                setDepartmentId={setDepartmentId}
+                departments={departments}
                 onAddClick={() => { console.log("Add Employee clicked") }} />
 
             {/* Employees Table */}
