@@ -41,7 +41,8 @@ main.sidebar-hidden #sidebar {
     padding: 15px;
     border-radius: 10px;
     border: solid 1px #E7E7E7;
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 #view-info {

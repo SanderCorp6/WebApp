@@ -1,4 +1,7 @@
 import { IoSearch } from "react-icons/io5";
+import { useDepartments } from "../hooks/useDepartments";
+import { usePositions } from "../hooks/usePositions";
+import { IoCloseCircleSharp } from "react-icons/io5";
 
 const FilterButton = ({ value, filter, setFilter, color, defaultColor }) => {
     const isActive = filter === value;
@@ -21,8 +24,12 @@ function EmployeeToolbar({
     searchTerm, setSearchTerm, 
     statusFilter, setStatusFilter, 
     departmentId, setDepartmentId,
-    departments, onAddClick 
+    positionId, setPositionId,
+    onAddClick 
 }) {
+    const { departments } = useDepartments();
+    const { positions } = usePositions();
+    
     const statusFilters = [
         { value: "All", color: "#6f6f6f" },
         { value: "Active", color: "#49de80" },
@@ -59,6 +66,7 @@ function EmployeeToolbar({
                         )
                     }
                 </div>
+                
                 <div className="filter-item">
                     {/* department filters */}
                     <label>Department:</label>
@@ -70,6 +78,27 @@ function EmployeeToolbar({
                             )
                         }
                     </select>
+                    {
+                        departmentId &&
+                        <IoCloseCircleSharp onClick={() => setDepartmentId('')} className="reset-filter-btn"/>
+                    }
+                </div>
+
+                <div className="filter-item">
+                    {/* position filters */}
+                    <label>Position:</label>
+                    <select onChange={(e) => setPositionId(e.target.value)} value={positionId}>
+                        <option value="">All</option>
+                        {
+                            positions.map(({ id, name }) => 
+                                <option key={id} value={id}>{name}</option>
+                            )
+                        }
+                    </select>
+                    {
+                        positionId &&
+                        <IoCloseCircleSharp onClick={() => setPositionId('')} className="reset-filter-btn"/>
+                    }
                 </div>
             </div>
         </div>

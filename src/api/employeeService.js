@@ -10,3 +10,8 @@ export const getEmployeesStats = async () => {
     const response = await api.get('/employees/stats');
     return response.data;
 }
+
+export const getEmployeeById = async (id) => {
+    const response = await api.get(`/employees/${id}`);
+    return response.data;
+}

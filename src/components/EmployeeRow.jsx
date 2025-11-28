@@ -1,4 +1,5 @@
 import { FiEye } from "react-icons/fi";
+import { useNavigate } from "react-router-dom";
 
 const StatusTag = ({ status }) => (
     <span className={`status-tag status-${status?.toLowerCase()}`}>
@@ -7,18 +8,30 @@ const StatusTag = ({ status }) => (
 );
 
 function EmployeeRow({ employee }) {
-    const fullName = `${employee.first_name} ${employee.last_name}`;
+    const navigate = useNavigate();
+
+    const handleViewClick = () => {
+        navigate(`/employees/${employee.id}`);
+    }
 
     return (
         <tr>
-            <td>{fullName}</td>
-            <td>{employee.position}</td>
+            <td>{employee.full_name}</td>
+            <td>{employee.position_name}</td>
             <td>{employee.department_name}</td>
             <td><StatusTag status={employee.status} /></td>
             <td>{new Date(employee.hire_date).toLocaleDateString('en-CA')}</td>
-            <td>$ {employee.salary}</td>
             <td>
-                <button className="action-btn"><FiEye /><span>View</span></button>
+                {
+                    new Intl.NumberFormat('es-MX', {
+                        style: 'currency',
+                        currency: 'MXN'
+                    }).format(Number(employee.salary))
+                }
+            </td>
+
+            <td>
+                <button className="action-btn" onClick={handleViewClick}><FiEye /><span>View</span></button>
             </td>
         </tr>
     );

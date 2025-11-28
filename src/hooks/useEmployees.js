@@ -2,13 +2,14 @@ import { useQuery } from '@tanstack/react-query';
 import { getEmployees, getEmployeesStats } from '../api/employeeService';
 
 export const useEmployees = (filters) => {
-    const { statusFilter, departmentId, sortBy, sortDir, searchTerm } = filters;
+    const { statusFilter, departmentId, positionId, sortBy, sortDir, searchTerm } = filters;
 
     const employeesQuery = useQuery({
-        queryKey: ['employees', statusFilter, departmentId, sortBy, sortDir, searchTerm],
+        queryKey: ['employees', statusFilter, departmentId, positionId, sortBy, sortDir, searchTerm],
         queryFn: () => getEmployees({ 
             status: statusFilter === 'All' ? '' : statusFilter,
             departmentId,
+            positionId,
             sortBy,
             sortDir,
             search: searchTerm

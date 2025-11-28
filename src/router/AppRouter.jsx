@@ -9,6 +9,7 @@ import MainLayout from '../layouts/MainLayout';
 import EmployeesPage from '../pages/EmployeesPage';
 import VacationsPage from '../pages/VacationsPage';
 import PositionsPage from '../pages/PositionsPage';
+import EmployeeDetailPage from '../pages/EmployeeDetailPage';
 
 function AppRouter() {
   const { user } = useAuth();
@@ -30,6 +31,7 @@ function AppRouter() {
           </ProtectedRoute>
         } >
         <Route index element={<EmployeesPage />} />
+        <Route path="employees/:id" element={<EmployeeDetailPage />} />
         <Route path="vacations" element={<VacationsPage />} />
         <Route path="positions" element={<PositionsPage />} />
       </Route>

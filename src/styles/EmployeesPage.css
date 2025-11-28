@@ -219,7 +219,7 @@ table tbody tr:hover {
     background-color: white;
     border-radius: 6px;
     border: 1px solid #E7E7E7;
-    height: 25px;
+    height: 27px;
     font-size: 12px;
     cursor: pointer;
     color: #6f6f6f;
@@ -229,4 +229,13 @@ table tbody tr:hover {
     outline: none;
     background-color: #f5f5f5;
     border-color: #A7A7A7;
+}
+
+.filters-section .filters .filter-item .reset-filter-btn {
+    font-size: 16px;
+    color: #A7A7A7;
+    cursor: pointer;
+}
+.filters-section .filters .filter-item .reset-filter-btn:hover {
+    color: #777777;
 }

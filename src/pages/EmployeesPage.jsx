@@ -5,11 +5,11 @@ import EmployeeToolbar from '../components/EmployeeToolBar';
 import StatsOverview from '../components/StatsOverview';
 import PageHeader from '../components/PageHeader';
 import { useEmployees } from '../hooks/useEmployees';
-import { useDepartments } from '../hooks/useDepartments';
 
 function EmployeesPages() {
     const [statusFilter, setStatusFilter] = useState('All');
     const [departmentId, setDepartmentId] = useState('');
+    const [positionId, setPositionId] = useState('');
     const [sortBy, setSortBy] = useState('name');
     const [sortDir, setSortDir] = useState('ASC');
     const [searchTerm, setSearchTerm] = useState('');
@@ -17,11 +17,11 @@ function EmployeesPages() {
     const { employees, stats, isLoading, isError } = useEmployees({
         statusFilter, 
         departmentId,
+        positionId,
         sortBy, 
         sortDir,
         searchTerm
     });
-    const { departments } = useDepartments();
 
     const handleSort = (columnKey) => {
         if (sortBy === columnKey) {
@@ -46,8 +46,9 @@ function EmployeesPages() {
                 statusFilter={statusFilter}
                 setStatusFilter={setStatusFilter}
                 departmentId={departmentId}
+                positionId={positionId}
                 setDepartmentId={setDepartmentId}
-                departments={departments}
+                setPositionId={setPositionId}
                 onAddClick={() => { console.log("Add Employee clicked") }} />
 
             {/* Employees Table */}
