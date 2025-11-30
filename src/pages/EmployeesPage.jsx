@@ -1,9 +1,9 @@
 import '../styles/EmployeesPage.css';
 import { useState } from "react";
-import EmployeeTable from '../components/EmployeeTable';
-import EmployeeToolbar from '../components/EmployeeToolBar';
-import StatsOverview from '../components/StatsOverview';
-import PageHeader from '../components/PageHeader';
+import EmployeeTable from '../components/employees/EmployeeTable';
+import EmployeeToolbar from '../components/employees/EmployeeToolBar';
+import StatsOverview from '../components/dashboard/StatsOverview';
+import PageHeader from '../components/layout/PageHeader';
 import { useEmployees } from '../hooks/useEmployees';
 
 function EmployeesPages() {
@@ -53,7 +53,6 @@ function EmployeesPages() {
 
             {/* Employees Table */}
             <div className="employees-table">
-                {/* Manejo de carga y errores */}
                 {isLoading && <p>Loading Data...</p>}
                 
                 {isError && (

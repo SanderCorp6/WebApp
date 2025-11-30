@@ -1,14 +1,13 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
-import ProtectedRoute from '../components/ProtectedRoute';
+import ProtectedRoute from '../components/layout/ProtectedRoute';
 
-// Importa las páginas
 import LoginPage from '../pages/LoginPage';
 import SignupPage from '../pages/SignupPage';
 import MainLayout from '../layouts/MainLayout';
 import EmployeesPage from '../pages/EmployeesPage';
 import VacationsPage from '../pages/VacationsPage';
-import PositionsPage from '../pages/PositionsPage';
+import OpeningsPage from '../pages/OpeningsPage';
 import EmployeeDetailPage from '../pages/EmployeeDetailPage';
 
 function AppRouter() {
@@ -33,7 +32,7 @@ function AppRouter() {
         <Route index element={<EmployeesPage />} />
         <Route path="employees/:id" element={<EmployeeDetailPage />} />
         <Route path="vacations" element={<VacationsPage />} />
-        <Route path="positions" element={<PositionsPage />} />
+        <Route path="openings" element={<OpeningsPage />} />
       </Route>
 
       <Route path="*" element={<Navigate to={user ? '/' : '/login'} />} />

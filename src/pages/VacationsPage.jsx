@@ -1,5 +1,5 @@
 import '../styles/VacationsPage.css'
-import PageHeader from "../components/PageHeader";
+import PageHeader from "../components/layout/PageHeader";
 
 function VacationsPage () {
     return (

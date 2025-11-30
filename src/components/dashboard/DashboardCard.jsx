@@ -1,14 +1,7 @@
-function DashboardCard ({ statistic, value, icon }) {
-    const colors = {
-        'Total Employees': '#6f6f6f',
-        'Active': '#49de80',
-        'Inactive': '#f57070',
-        'Departments': '#5491dc'
-    };
-
+function DashboardCard ({ statistic, value, icon, color }) {
     return (
         <div className="dashboard-card">
-            <div className="icon" style={{ backgroundColor: `${colors[statistic] || 'gray'}` }}>
+            <div className="icon" style={{ backgroundColor: `${color || 'gray'}` }}>
                 { icon }
             </div>
             <div className="details">

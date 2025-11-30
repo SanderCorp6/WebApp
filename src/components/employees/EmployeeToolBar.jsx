@@ -1,6 +1,6 @@
 import { IoSearch } from "react-icons/io5";
-import { useDepartments } from "../hooks/useDepartments";
-import { usePositions } from "../hooks/usePositions";
+import { useDepartments } from "../../hooks/useDepartments";
+import { usePositions } from "../../hooks/usePositions";
 import { IoCloseCircleSharp } from "react-icons/io5";
 
 const FilterButton = ({ value, filter, setFilter, color, defaultColor }) => {

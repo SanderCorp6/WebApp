@@ -1,8 +1,8 @@
 import { BsPeople, BsPeopleFill, BsCalendar3Week, BsCalendar3WeekFill, BsTags, BsFillTagsFill } from 'react-icons/bs';
 import { FiSettings } from "react-icons/fi";
 import SidebarNavLink from './SidebarNavLink';
-import { useAuth } from '../hooks/useAuth';
-import '../styles/Sidebar.css'
+import { useAuth } from '../../hooks/useAuth';
+import '../../styles/Sidebar.css'
 
 function Sidebar () {
     const { user, logout } = useAuth();
@@ -27,7 +27,7 @@ function Sidebar () {
             <div className='nav-buttons'>
                 <SidebarNavLink name="Employees" route="" icon={<BsPeople />} fillIcon={<BsPeopleFill />}/> 
                 <SidebarNavLink name="Vacations" route="vacations" icon={<BsCalendar3Week />} fillIcon={<BsCalendar3WeekFill />}/> 
-                <SidebarNavLink name="Positions" route="positions" icon={<BsTags />} fillIcon={<BsFillTagsFill />}/> 
+                <SidebarNavLink name="Openings" route="openings" icon={<BsTags />} fillIcon={<BsFillTagsFill />}/> 
             </div>
 
             <div className="info-section">

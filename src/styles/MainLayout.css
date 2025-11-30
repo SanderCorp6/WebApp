@@ -61,6 +61,13 @@ main.sidebar-hidden #sidebar {
     font-size: 14px;
 }
 
+.breadcrumb-link {
+    font-weight: 500;
+    font-size: 14px;
+    color: #A7A7A7;
+    text-decoration: none;
+}
+
 #view-info .header-content {
     display: flex;
     align-items: center;
