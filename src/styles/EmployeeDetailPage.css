@@ -58,6 +58,7 @@
     color: #e0f5ea;
     border: 1px solid #008a4a;
 }
+
 .edit-btn, .cancel-btn {
     display: flex;
     align-items: center;
@@ -69,26 +70,33 @@
 .edit-btn > .icon, .cancel-btn > .icon {
     font-size: 14px;
 }
-
 .edit-btn:hover, .cancel-btn:hover {
     background-color: #E7E7E7;
 }
-/* .main-info > div > .active{
-    background-color: #e0f5ea;
-    color: #008a4a;
+
+.save-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background-color: #626262;
+    color: white;
+    border: solid 1px #E7E7E7;
 }
-.main-info > div > .inactive{
-    background-color: #fdeaea;
-    color: #d92d20;
-} */
+.save-btn > .icon {
+    font-size: 14px;
+}
+.save-btn:hover {
+    background-color: #444444;
+}
 
 
 /* EMPLOYEE'S DETAILS */
 .detail-container {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+    /* grid-template-columns: repeat(2, minmax(0, 1fr)); */
     gap: 15px;
-    grid-auto-rows: minmax(100px, auto);
+    /* grid-auto-rows: minmax(100px, auto); */
 }
 
 .detail-container > section{
@@ -160,21 +168,21 @@
 }
 
 
-.personal-info {
+.forms-section {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 30px;
 }
-.personal-info > header {
+.forms-section > header {
     display: flex;
     gap: 10px;
     align-items: center;
     color: #6f6f6f;
 }
-.personal-info > header > .icon {
+.forms-section > header > .icon {
     font-size: 16px;
 }
-.personal-info > header > h2 {
+.forms-section > header > h2 {
     font-size: 13px;
     font-weight: 400;
 }
@@ -183,29 +191,53 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 15px;
-    grid-auto-rows: minmax(100px, auto);
 }
-.forms-container > .form-input {
+.form-input {
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
-.forms-container > .form-input > label{
+.form-input > label{
     font-size: 13px;
     color: #6f6f6f;
 }
-.forms-container > .form-input > input {
+.form-input > input, .form-input > select {
     padding: 10px;
     border: 1px solid #e7e7e7;
     border-radius: 7px;
     background-color: rgb(255, 255, 255);
     font-size: 14px;
 }
-.forms-container > .form-input > input:disabled {
+.form-input > input:disabled, .form-input > select:disabled {
     background-color: #f3f3f5;
+    color: #575757;
 }
-.forms-container > .form-input > input:focus {
+.form-input > input:focus, .form-input > select:focus {
     /* outline: #e2e2e2 3px solid; */
     outline: none;
     border-color: #a1a1a1;
+}
+.form-input > select {
+    height: 39px;
+}
+
+
+/* Pantallas menores a 768px */
+@media (max-width: 768px) {
+    .detail-container {
+        grid-template-columns: 1fr; /* 👈 Pasamos a 1 columna */
+    }
+
+    .cl-2 {
+        grid-column: 1 / 2; /* 👈 Ya no intentamos ocupar 2 columnas */
+    }
+
+    .forms-container {
+        grid-template-columns: 1fr; /* Los inputs también en una sola columna */
+    }
+
+    .employee-header {
+        flex-direction: column;
+        text-align: center;
+    }
 }

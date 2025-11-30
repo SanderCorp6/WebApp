@@ -11,7 +11,17 @@ export const getEmployeesStats = async () => {
     return response.data;
 }
 
+export const getEmployeeOptions = async () => {
+    const response = await api.get('employees/options');
+    return response.data;
+}
+
 export const getEmployeeById = async (id) => {
     const response = await api.get(`/employees/${id}`);
+    return response.data;
+}
+
+export const updateEmployee = async (id, data) => {
+    const response = await api.patch(`/employees/${id}`, data);
     return response.data;
 }
