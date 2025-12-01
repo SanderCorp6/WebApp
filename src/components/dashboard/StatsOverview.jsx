@@ -3,10 +3,10 @@ import { LuUsersRound, LuUserRoundCheck, LuUserRoundX, LuBuilding2 } from "react
 
 function StatsOverview({ stats }) {
     const statsList = [
-        { statistic: 'Total Employees', value: stats.totalEmployees || 0, icon: <LuUsersRound />, color: '#6f6f6f' },
-        { statistic: 'Active', value: stats.activeEmployees || 0, icon: <LuUserRoundCheck />, color: '#49de80' },
-        { statistic: 'Inactive', value: stats.inactiveEmployees || 0, icon: <LuUserRoundX />, color: '#f57070' },
-        { statistic: 'Departments', value: stats.totalDepartments || 0, icon: <LuBuilding2 />, color: '#5491dc' },
+        { statistic: 'Total Employees', value: stats.totalEmployees || 0, icon: LuUsersRound, color: '#6f6f6f' },
+        { statistic: 'Active', value: stats.activeEmployees || 0, icon: LuUserRoundCheck, color: '#49de80' },
+        { statistic: 'Inactive', value: stats.inactiveEmployees || 0, icon: LuUserRoundX, color: '#f57070' },
+        { statistic: 'Departments', value: stats.totalDepartments || 0, icon: LuBuilding2, color: '#5491dc' },
     ];
 
     return (

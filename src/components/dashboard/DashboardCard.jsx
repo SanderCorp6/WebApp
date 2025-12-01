@@ -1,8 +1,8 @@
-function DashboardCard ({ statistic, value, icon, color }) {
+function DashboardCard ({ statistic, value, icon: Icon, color }) {
     return (
         <div className="dashboard-card">
             <div className="icon" style={{ backgroundColor: `${color || 'gray'}` }}>
-                { icon }
+                { Icon && <Icon />}
             </div>
             <div className="details">
                 <p className="statistic">{ statistic }</p>

@@ -15,8 +15,16 @@ const mapEmployeeToForm = (employee) => ({
     contract_type: employee.contract_type || '',
     supervisor_id: employee.supervisor_id || '',
     hire_date: employee.hire_date?.split('T')[0] || '',
-    termination_date: employee.termination_date?.split('T')[0] || '',
-    reentry_date: employee.reentry_date?.split('T')[0] || '',
+    termination_date: employee.termination_date?.split('T')[0] || null,
+    reentry_date: employee.reentry_date?.split('T')[0] || null,
+    
+    salary: employee.salary || 0,
+    payroll_key: employee.payroll_key || '',
+    periodicity: employee.periodicity || '',
+    cost_center: employee.cost_center || '',
+
+    vacation_days_total: employee.vacation_days_total || 0,
+    vacation_days_taken: employee.vacation_days_taken || 0,
 });
 
 export const useEmployeeForm = (employee, updateEmployee) => {
@@ -35,7 +43,11 @@ export const useEmployeeForm = (employee, updateEmployee) => {
 
     const handleSave = async () => {
         const emptyFields = Object.keys(formData).filter(key => {
-            if (key === 'supervisor_id' || key === 'termination_date' || key === 'reentry_date') return false;
+            if (key === 'supervisor_id' || key === 'termination_date' || 
+                key === 'reentry_date' || key === 'vacation_days_total' ||
+                key === 'vacation_days_taken') {
+                return false;
+            }
             return !formData[key];
         });
 

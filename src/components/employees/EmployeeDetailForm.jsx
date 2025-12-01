@@ -1,10 +1,11 @@
-import { FiBriefcase, FiMail, FiDollarSign } from 'react-icons/fi';
+import { FiBriefcase, FiMail, FiDollarSign, FiAward } from 'react-icons/fi';
 
 import { FormInput, FormSelect } from '../ui/FormInput';
 import { FormSection } from '../ui/FormSection';
 import { EmployeeHeaderInfo } from './EmployeeHeaderInfo';
 import { useEmployeeForm } from '../../hooks/useEmployeeForm';
 import EmployeeActionsBar from "./EmployeeActionsBar";
+import EmployeeHistory from './EmployeeHistory';
 
 function EmployeeDetailForm({ 
     employee, 
@@ -128,8 +129,53 @@ function EmployeeDetailForm({
                 </FormSection>
 
                 <FormSection title="PAYROLL INFORMATION" icon={FiDollarSign}>
-
+                    <FormInput 
+                        label="Salary" id="salary" value={formData.salary}
+                        onChange={handleInputChange} disabled={!isEditing || isUpdating} 
+                    />
+                    <FormSelect 
+                        label="Periodicity" id="periodicity" value={formData.periodicity}
+                        onChange={handleInputChange} disabled={!isEditing || isUpdating}
+                    >
+                        <option value="Weekly">Weekly</option>
+                        <option value="Bi-weekly">Bi-weekly</option>
+                        <option value="Monthly">Monthly</option>
+                    </FormSelect>
+                    <FormSelect 
+                        className="cl-2" label="Cost Center" id="cost_center" value={formData.cost_center}
+                        onChange={handleInputChange} disabled={!isEditing || isUpdating}
+                    >
+                        <option value="PROD-A">PROD-A</option>
+                        <option value="PROD-B">PROD-B</option>
+                        <option value="PROD-C">PROD-C</option>
+                        <option value="CC-DES">CC-DES</option>
+                        <option value="CC-PROD">CC-PROD</option>
+                        <option value="CC-ADM">DES-ADM</option>
+                    </FormSelect>
+                    <FormInput 
+                        className="cl-2"
+                        label="Payroll Key" id="payroll_key" value={formData.payroll_key}
+                        onChange={handleInputChange} disabled 
+                    />
                 </FormSection>
+
+                <FormSection title="VACATION & BENEFITS" icon={FiAward}>
+                    <FormInput 
+                        label="Total Vacation Days" id="vacation_days_total" value={formData.vacation_days_total}
+                        onChange={handleInputChange} disabled={!isEditing || isUpdating} type="number"
+                    />
+                    <FormInput 
+                        label="Vacation Days Taken" id="vacation_days_taken" value={formData.vacation_days_taken}
+                        onChange={handleInputChange} disabled type="number"
+                    />
+
+                    <div className="form-info">
+                        <label>Remaining Vacation Days</label>
+                        <p>{formData.vacation_days_total - formData.vacation_days_taken}</p>
+                    </div>
+                </FormSection>
+                
+                <EmployeeHistory />
             </div>
         </>
     );
