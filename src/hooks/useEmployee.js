@@ -1,5 +1,5 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { getEmployeeById, updateEmployee } from '../api/employeeService';
+import { getEmployeeById, getEmployeeHistory, updateEmployee } from '../api/employeeService';
 
 export const useEmployee = (id) => {
     const queryClient = useQueryClient();
@@ -11,10 +11,18 @@ export const useEmployee = (id) => {
         staleTime: 1000 * 60 * 5,
     });
 
+    const historyQuery = useQuery({
+        queryKey: ['employee', 'history', id],
+        queryFn: () => getEmployeeHistory(id),
+        enabled: !!id,
+        staleTime: 1000 * 60 * 10,
+    })
+
     const updateMutation = useMutation({
         mutationFn: (data) => updateEmployee(id, data),
         onSuccess: () => {
             queryClient.invalidateQueries(['employee', id]);
+            queryClient.invalidateQueries(['employee', 'history', id]);
             queryClient.invalidateQueries(['employees']);
             queryClient.invalidateQueries(['employees', 'options']);
         }
@@ -22,9 +30,10 @@ export const useEmployee = (id) => {
 
     return {
         employee: query.data,
-        isLoading: query.isLoading,
-        isError: query.isError,
-        error: query.error,
+        history: historyQuery.data?.history || [],
+        isLoading: query.isLoading || historyQuery.isLoading,
+        isError: query.isError || historyQuery.isError,
+        error: query.error || historyQuery.error,
         updateEmployee: updateMutation.mutateAsync,
         isUpdating: updateMutation.isPending
     };

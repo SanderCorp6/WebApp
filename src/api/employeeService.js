@@ -21,6 +21,11 @@ export const getEmployeeById = async (id) => {
     return response.data;
 }
 
+export const getEmployeeHistory = async (id) => {
+    const response = await api.get(`/employees/${id}`);
+    return response.data;
+}
+
 export const updateEmployee = async (id, data) => {
     const response = await api.patch(`/employees/${id}`, data);
     return response.data;

@@ -9,6 +9,7 @@ import EmployeeHistory from './EmployeeHistory';
 
 function EmployeeDetailForm({ 
     employee, 
+    history,
     updateEmployee, 
     isUpdating, 
     positions, 
@@ -175,7 +176,7 @@ function EmployeeDetailForm({
                     </div>
                 </FormSection>
                 
-                <EmployeeHistory />
+                <EmployeeHistory history={history}/>
             </div>
         </>
     );
