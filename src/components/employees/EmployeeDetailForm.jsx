@@ -131,7 +131,7 @@ function EmployeeDetailForm({
 
                 <FormSection title="PAYROLL INFORMATION" icon={FiDollarSign}>
                     <FormInput 
-                        label="Salary" id="salary" value={formData.salary}
+                        label="Salary" id="salary" value={formData.salary} type="number"
                         onChange={handleInputChange} disabled={!isEditing || isUpdating} 
                     />
                     <FormSelect 

@@ -22,7 +22,7 @@ export const getEmployeeById = async (id) => {
 }
 
 export const getEmployeeHistory = async (id) => {
-    const response = await api.get(`/employees/${id}`);
+    const response = await api.get(`/employees/history/${id}`);
     return response.data;
 }
 

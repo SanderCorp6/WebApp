@@ -28,6 +28,8 @@ export const useEmployee = (id) => {
         }
     });
 
+    console.log(historyQuery.data?.history)
+
     return {
         employee: query.data,
         history: historyQuery.data?.history || [],
