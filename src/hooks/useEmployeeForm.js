@@ -66,13 +66,21 @@ export const useEmployeeForm = (employee, updateEmployee) => {
 
     const hasChanges = Object.keys(formData).some((key) => {
       let originalValue = employee[key];
-      if (key === "birth_date" && originalValue) {
+      let formValue = formData[key];
+
+      const dateFields = ["birth_date", "hire_date", "termination_date", "reentry_date"];
+
+      if (dateFields.includes(key) && originalValue) {
         originalValue = originalValue.split("T")[0];
       }
       if (originalValue === null || originalValue === undefined) {
         originalValue = "";
       }
-      return String(formData[key]) !== String(originalValue);
+      if (formValue === null || formValue === undefined) {
+        formValue = "";
+      }
+
+      return String(formValue) !== String(originalValue);
     });
 
     if (!hasChanges) {
