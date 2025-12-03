@@ -1,33 +1,34 @@
-import { useQuery } from '@tanstack/react-query';
-import { getEmployees, getEmployeesStats } from '../api/employeeService';
+import { useQuery } from "@tanstack/react-query";
+import { getEmployees, getEmployeesStats } from "../api/employeeService";
 
 export const useEmployees = (filters) => {
-    const { statusFilter, departmentId, positionId, sortBy, sortDir, searchTerm } = filters;
+  const { statusFilter, departmentId, positionId, sortBy, sortDir, searchTerm } = filters;
 
-    const employeesQuery = useQuery({
-        queryKey: ['employees', statusFilter, departmentId, positionId, sortBy, sortDir, searchTerm],
-        queryFn: () => getEmployees({ 
-            status: statusFilter === 'All' ? '' : statusFilter,
-            departmentId,
-            positionId,
-            sortBy,
-            sortDir,
-            search: searchTerm
-        }),
-        staleTime: 1000 * 60 * 3,
-        keepPreviousData: true,
-    });
+  const employeesQuery = useQuery({
+    queryKey: ["employees", statusFilter, departmentId, positionId, sortBy, sortDir, searchTerm],
+    queryFn: () =>
+      getEmployees({
+        status: statusFilter === "All" ? "" : statusFilter,
+        departmentId,
+        positionId,
+        sortBy,
+        sortDir,
+        search: searchTerm,
+      }),
+    staleTime: 1000 * 60 * 3,
+    keepPreviousData: true,
+  });
 
-    const statsQuery = useQuery({
-        queryKey: ['employeesStats'],
-        queryFn: getEmployeesStats,
-        staleTime: 1000 * 60 * 3,
-    });
+  const statsQuery = useQuery({
+    queryKey: ["employeesStats"],
+    queryFn: getEmployeesStats,
+    staleTime: 1000 * 60 * 3,
+  });
 
-    return {
-        employees: employeesQuery.data?.employees || [],
-        stats: statsQuery.data || {},
-        isLoading: employeesQuery.isLoading || statsQuery.isLoading,
-        isError: employeesQuery.isError
-    };
+  return {
+    employees: employeesQuery.data?.employees || [],
+    stats: statsQuery.data || {},
+    isLoading: employeesQuery.isLoading || statsQuery.isLoading,
+    isError: employeesQuery.isError,
+  };
 };

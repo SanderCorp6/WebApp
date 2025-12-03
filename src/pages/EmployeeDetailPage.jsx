@@ -1,45 +1,51 @@
-import '../styles/EmployeeDetailPage.css';
-import { useParams } from 'react-router-dom';
-import { useEmployee } from '../hooks/useEmployee';
-import { usePositions } from '../hooks/usePositions';
-import { useDepartments } from '../hooks/useDepartments';
-import { useEmployeeOptions } from '../hooks/useEmployeeOptions';
-import PageHeader from '../components/layout/PageHeader';
-import EmployeeDetailForm from '../components/employees/EmployeeDetailForm';
+import "../styles/EmployeeDetailPage.css";
+import { useParams } from "react-router-dom";
+import { useEmployee } from "../hooks/useEmployee";
+import { usePositions } from "../hooks/usePositions";
+import { useDepartments } from "../hooks/useDepartments";
+import { useEmployeeOptions } from "../hooks/useEmployeeOptions";
+import PageHeader from "../components/layout/PageHeader";
+import EmployeeDetailForm from "../components/employees/EmployeeDetailForm";
 
 function EmployeeDetailPage() {
-    const { id } = useParams();
+  const { id } = useParams();
 
-    const { employee, history, isLoading, isError, updateEmployee, isUpdating } = useEmployee(id);
-    const { employeesOptions } = useEmployeeOptions();
-    const { positions } = usePositions();
-    const { departments } = useDepartments();
+  const { employee, history, isLoading, isError, updateEmployee, isUpdating } = useEmployee(id);
+  const { employeesOptions } = useEmployeeOptions();
+  const { positions } = usePositions();
+  const { departments } = useDepartments();
 
-    if (isLoading) return <div className="loading-container">Loading...</div>;
-    if (isError) return <div className="error-message">Error loading employee details.</div>;
-    if (!employee) return <div className="error-message">Employee not found.</div>;
+  if (isLoading) {
+    return <div className="loading-container">Loading...</div>;
+  }
+  if (isError) {
+    return <div className="error-message">Error loading employee details.</div>;
+  }
+  if (!employee) {
+    return <div className="error-message">Employee not found.</div>;
+  }
 
-    const breadcrumbs = [
-        { label: 'Employees', path: '/' },
-        { label: employee.full_name, active: true }
-    ];
+  const breadcrumbs = [
+    { label: "Employees", path: "/" },
+    { label: employee.full_name, active: true },
+  ];
 
-    return (
-        <div className="employee-detail-page">
-            <PageHeader breadcrumbs={breadcrumbs} />
+  return (
+    <div className="employee-detail-page">
+      <PageHeader breadcrumbs={breadcrumbs} />
 
-            <EmployeeDetailForm 
-                key={employee.id} 
-                employee={employee}
-                history={history}
-                updateEmployee={updateEmployee}
-                isUpdating={isUpdating}
-                positions={positions}
-                departments={departments}
-                employeesOptions={employeesOptions}
-            />
-        </div>
-    );
+      <EmployeeDetailForm
+        key={employee.id}
+        employee={employee}
+        history={history}
+        updateEmployee={updateEmployee}
+        isUpdating={isUpdating}
+        positions={positions}
+        departments={departments}
+        employeesOptions={employeesOptions}
+      />
+    </div>
+  );
 }
 
 export default EmployeeDetailPage;
