@@ -5,6 +5,7 @@ import EmployeeToolbar from "../components/employees/EmployeeToolBar";
 import StatsOverview from "../components/dashboard/StatsOverview";
 import PageHeader from "../components/layout/PageHeader";
 import { useEmployees } from "../hooks/useEmployees";
+import { useDebounce } from "../hooks/useDebounce";
 
 function EmployeesPages() {
   const [statusFilter, setStatusFilter] = useState("All");
@@ -14,13 +15,15 @@ function EmployeesPages() {
   const [sortDir, setSortDir] = useState("ASC");
   const [searchTerm, setSearchTerm] = useState("");
 
+  const debouncedSearchTerm = useDebounce(searchTerm, 400);
+
   const { employees, stats, isLoading, isError } = useEmployees({
     statusFilter,
     departmentId,
     positionId,
     sortBy,
     sortDir,
-    searchTerm,
+    searchTerm: debouncedSearchTerm,
   });
 
   const handleSort = (columnKey) => {
