@@ -99,3 +99,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+*.patch
+patches/

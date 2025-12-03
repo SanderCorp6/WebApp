@@ -1,15 +1,12 @@
-import { FiSidebar } from "react-icons/fi";
-import '../styles/VacationsPage.css'
+import "../styles/VacationsPage.css";
+import PageHeader from "../components/layout/PageHeader";
 
-function VacationsPage () {
-    return (
-        <>
-            <div id="view-info">
-                <FiSidebar id="sidebar-icon"/>
-                <p>Home / Vacations</p>
-            </div>
-        </>
-    )
+function VacationsPage() {
+  return (
+    <>
+      <PageHeader title="Vacations" />
+    </>
+  );
 }
 
 export default VacationsPage;
