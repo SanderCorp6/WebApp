@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
 const mapEmployeeToForm = (employee) => ({
@@ -30,6 +30,10 @@ const mapEmployeeToForm = (employee) => ({
 export const useEmployeeForm = (employee, updateEmployee) => {
   const [formData, setFormData] = useState(() => mapEmployeeToForm(employee));
   const [isEditing, setIsEditing] = useState(false);
+
+  useEffect(() => {
+    setFormData(mapEmployeeToForm(employee));
+  }, [employee]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
