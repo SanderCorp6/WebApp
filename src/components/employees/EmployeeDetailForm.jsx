@@ -200,12 +200,10 @@ function EmployeeDetailForm({
             onChange={handleInputChange}
             disabled={!isEditing || isUpdating}
           >
-            <option value="PROD-A">PROD-A</option>
-            <option value="PROD-B">PROD-B</option>
-            <option value="PROD-C">PROD-C</option>
             <option value="CC-DES">CC-DES</option>
             <option value="CC-PROD">CC-PROD</option>
-            <option value="CC-ADM">DES-ADM</option>
+            <option value="CC-ADM">CC-ADM</option>
+            <option value="CC-DES">CC-DES</option>
           </FormSelect>
           <FormInput
             className="cl-2"

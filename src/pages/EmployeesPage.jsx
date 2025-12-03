@@ -6,8 +6,11 @@ import StatsOverview from "../components/dashboard/StatsOverview";
 import PageHeader from "../components/layout/PageHeader";
 import { useEmployees } from "../hooks/useEmployees";
 import { useDebounce } from "../hooks/useDebounce";
+import { useNavigate } from "react-router-dom";
 
 function EmployeesPages() {
+  const navigate = useNavigate();
+
   const [statusFilter, setStatusFilter] = useState("All");
   const [departmentId, setDepartmentId] = useState("");
   const [positionId, setPositionId] = useState("");
@@ -53,7 +56,7 @@ function EmployeesPages() {
         setDepartmentId={setDepartmentId}
         setPositionId={setPositionId}
         onAddClick={() => {
-          console.log("Add Employee clicked");
+          navigate(`/employees/register`);
         }}
       />
 

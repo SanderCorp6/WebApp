@@ -221,11 +221,6 @@
     height: 39px;
 }
 
-.form-input > input[type="date"] {
-    height: 39px;
-    border-radius: 4px;
-}
-
 .form-info {
     background-color: #fafafa;
     width: 100%;
