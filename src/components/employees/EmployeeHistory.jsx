@@ -1,6 +1,4 @@
-import { RiHistoryFill } from "react-icons/ri";
-import { LuBuilding2 } from "react-icons/lu";
-import { FiAlertCircle, FiTrendingUp, FiDollarSign } from "react-icons/fi";
+import { Building2, TrendingUp, DollarSign, AlertCircle, History } from "lucide-react";
 
 const formatDate = (dateString) => {
   if (!dateString) {
@@ -22,22 +20,22 @@ const getChangeTypeIcon = (type) => {
 
   const styles = {
     POSITION: {
-      icon: FiTrendingUp,
+      icon: TrendingUp,
       color: "#60a5fa",
       bgColor: "#deedffff",
     },
     DEPARTMENT: {
-      icon: LuBuilding2,
+      icon: Building2,
       color: "#a78bfa",
       bgColor: "#f5f3ff",
     },
     SALARY: {
-      icon: FiDollarSign,
+      icon: DollarSign,
       color: "#43bb6fff",
       bgColor: "#dbffe8ff",
     },
     DEFAULT: {
-      icon: FiAlertCircle,
+      icon: AlertCircle,
       color: "#6f6f6f",
       bgColor: "#f5f5f5",
     },
@@ -49,8 +47,8 @@ const getChangeTypeIcon = (type) => {
 function EmployeeHistory({ history }) {
   return (
     <section className="forms-section history-section cl-2">
-      <header className="history-header">
-        <RiHistoryFill className="icon" />
+      <header>
+        <History size={14} />
         <h2>EMPLOYEE HISTORY</h2>
       </header>
 
@@ -66,7 +64,7 @@ function EmployeeHistory({ history }) {
                 {!isLast && <div className="timeline-line"></div>}
 
                 <div className="timeline-icon" style={{ backgroundColor: style.color }}>
-                  <Icon className="change-icon" />
+                  <Icon className="change-icon" size={16} />
                 </div>
 
                 <div className="timeline-content">
@@ -107,7 +105,7 @@ function EmployeeHistory({ history }) {
           })
         ) : (
           <div className="empty-history">
-            <RiHistoryFill className="empty-icon" />
+            <History className="empty-icon" size={55} />
             <p>No history available for this employee</p>
           </div>
         )}

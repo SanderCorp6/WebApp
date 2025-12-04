@@ -104,10 +104,10 @@ export const useEmployeeForm = (employee, updateEmployee) => {
         position: "bottom-right",
         duration: 3000,
         style: {
-          fontSize: "15px",
+          fontSize: "13px",
         },
         iconTheme: {
-          primary: "#000000ff",
+          primary: "#101828",
           secondary: "#FFFAEE",
         },
       }
@@ -129,10 +129,10 @@ export const useEmployeeForm = (employee, updateEmployee) => {
         position: "bottom-right",
         duration: 3000,
         style: {
-          fontSize: "15px",
+          fontSize: "13px",
         },
         iconTheme: {
-          primary: "#000000ff",
+          primary: "#101828",
           secondary: "#FFFAEE",
         },
       }

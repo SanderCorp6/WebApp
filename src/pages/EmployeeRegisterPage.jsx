@@ -116,7 +116,7 @@ function EmployeeRegisterPage() {
         <div className="employee-form-section employment-info border-t">
           <div className="section-header">
             <div className="icon-container">
-              <Briefcase size={15} color="#364153" />
+              <DollarSign size={15} color="#364153" />
             </div>
             <h2>Compensation & Payroll</h2>
           </div>

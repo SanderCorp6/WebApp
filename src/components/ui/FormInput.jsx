@@ -1,9 +1,9 @@
-export function FormInput({ label, id, className, ...props }) {
+export function FormInput({ label, id, className, isOptional, ...props }) {
   return (
     <div className={`form-input ${className || ""}`}>
       <label htmlFor={id}>
         {label}
-        <span>*</span>
+        {!isOptional && <span>*</span>}
       </label>
       <input id={id} name={id} {...props} />
     </div>

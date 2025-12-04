@@ -1,6 +1,4 @@
-import { BsPeople, BsPeopleFill, BsCalendar3Week, BsCalendar3WeekFill, BsTags, BsFillTagsFill } from "react-icons/bs";
 import { Users, Settings, Calendar as CalendarIcon, Briefcase } from "lucide-react";
-import { FiSettings } from "react-icons/fi";
 import SidebarNavLink from "./SidebarNavLink";
 import { useAuth } from "../../hooks/useAuth";
 import "../../styles/Sidebar.css";
