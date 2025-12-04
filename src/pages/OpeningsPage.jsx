@@ -3,9 +3,9 @@ import PageHeader from "../components/layout/PageHeader";
 
 function OpeningsPage() {
   return (
-    <>
-      <PageHeader title="Openings" />
-    </>
+    <div className="openings-page">
+      <PageHeader title="Openings" description="Manage the company openings" />
+    </div>
   );
 }
 
