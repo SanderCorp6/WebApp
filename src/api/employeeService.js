@@ -31,7 +31,7 @@ export const updateEmployee = async (id, data) => {
   return response.data;
 };
 
-export const registerEmployee = async ({ data }) => {
+export const registerEmployee = async (data) => {
   const response = await api.post("/employees", data);
   return response.data;
 };
