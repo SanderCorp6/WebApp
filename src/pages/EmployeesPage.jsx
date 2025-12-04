@@ -40,7 +40,7 @@ function EmployeesPages() {
 
   return (
     <div className="employees-page">
-      <PageHeader title="Employees" />
+      <PageHeader title="Employees" description={"Manage your company employees"} />
 
       {/* Overview */}
       <StatsOverview stats={stats} />

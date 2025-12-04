@@ -1,17 +1,17 @@
-import { IoSearch } from "react-icons/io5";
 import { useDepartments } from "../../hooks/useDepartments";
 import { usePositions } from "../../hooks/usePositions";
 import { IoCloseCircleSharp } from "react-icons/io5";
+import { Search, Plus } from "lucide-react";
 
 const FilterButton = ({ value, filter, setFilter, color, defaultColor }) => {
   const isActive = filter === value;
 
   return (
     <button
-      className="filter-btn"
       style={{
         backgroundColor: isActive && color,
         color: isActive && defaultColor,
+        borderColor: isActive && color,
       }}
       onClick={() => setFilter(value)}
     >
@@ -35,16 +35,16 @@ function EmployeeToolbar({
   const { positions } = usePositions();
 
   const statusFilters = [
-    { value: "All", color: "#6f6f6f" },
-    { value: "Active", color: "#49de80" },
-    { value: "Inactive", color: "#f57070" },
+    { value: "All", color: "#101828" },
+    { value: "Active", color: "#10b981" },
+    { value: "Inactive", color: "#ef4444" },
   ];
 
   return (
     <div className="filters-section">
       <div className="creation-and-search">
         <div className="search-bar">
-          <IoSearch className="icon" />
+          <Search size={15} />
           <input
             type="text"
             placeholder="Search employees by name or email"
@@ -52,7 +52,9 @@ function EmployeeToolbar({
             onChange={(e) => setSearchTerm(e.target.value)}
           />
         </div>
-        <button onClick={onAddClick}>Add Employee</button>
+        <button onClick={onAddClick}>
+          <Plus size={13} /> Add Employee
+        </button>
       </div>
 
       <div className="filters">

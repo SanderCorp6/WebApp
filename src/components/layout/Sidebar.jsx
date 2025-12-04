@@ -16,7 +16,14 @@ function Sidebar() {
     <section id="sidebar">
       <div className="profile-info">
         <div className="user-image-border">
-          <div className="user-image"></div>
+          <div className="user-image">
+            {user?.name
+              ?.split(" ")
+              .slice(0, 2)
+              .map((word) => word[0])
+              .join("")
+              .toUpperCase()}
+          </div>
         </div>
         <div className="user-data">
           <h1>{user?.name}</h1>
