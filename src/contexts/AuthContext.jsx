@@ -1,5 +1,5 @@
 import { createContext, useState, useEffect } from "react";
-import { loginUser, signupUser } from "../api/authService";
+import { loginUser } from "../api/authService";
 
 const AuthContext = createContext();
 
@@ -24,13 +24,6 @@ function AuthProvider({ children }) {
     localStorage.setItem("user", JSON.stringify(userData.user));
     setUser(userData.user);
   };
-
-  const signup = async (name, email, password, role) => {
-    const userData = await signupUser(name, email, password, role);
-    localStorage.setItem("user", JSON.stringify(userData.user));
-    setUser(userData.user);
-  };
-
   const logout = () => {
     localStorage.removeItem("user");
     setUser(null);
@@ -40,7 +33,6 @@ function AuthProvider({ children }) {
     user,
     loading,
     login,
-    signup,
     logout,
   };
 

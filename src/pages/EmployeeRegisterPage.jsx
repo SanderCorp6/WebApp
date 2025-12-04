@@ -5,6 +5,17 @@ import { FormInput, FormSelect } from "../components/ui/FormInput";
 import { usePositions } from "../hooks/usePositions";
 import { useDepartments } from "../hooks/useDepartments";
 
+const SectionHeader = ({ title, icon: Icon }) => {
+  return (
+    <div className="section-header">
+      <div className="icon-container">
+        <Icon size={15} color="#364153" />
+      </div>
+      <h2>{title}</h2>
+    </div>
+  );
+};
+
 function EmployeeRegisterPage() {
   const navigate = useNavigate();
   const { positions } = usePositions();
@@ -29,12 +40,7 @@ function EmployeeRegisterPage() {
         </div>
 
         <div className="employee-form-section personal-info">
-          <div className="section-header">
-            <div className="icon-container">
-              <User size={15} color="#364153" />
-            </div>
-            <h2>Personal Information</h2>
-          </div>
+          <SectionHeader title={"Personal Information"} icon={User} />
 
           <div className="forms-container">
             <FormInput label="First Name" id="first_name" placeholder="Enter first name" />
@@ -50,12 +56,7 @@ function EmployeeRegisterPage() {
         </div>
 
         <div className="employee-form-section contact-info border-t">
-          <div className="section-header">
-            <div className="icon-container">
-              <Mail size={15} color="#364153" />
-            </div>
-            <h2>Contact Information</h2>
-          </div>
+          <SectionHeader title={"Contact Information"} icon={Mail} />
 
           <div className="forms-container">
             <FormInput
@@ -77,12 +78,7 @@ function EmployeeRegisterPage() {
         </div>
 
         <div className="employee-form-section employment-info border-t">
-          <div className="section-header">
-            <div className="icon-container">
-              <Briefcase size={15} color="#364153" />
-            </div>
-            <h2>Employment Details</h2>
-          </div>
+          <SectionHeader title={"Employment Details"} icon={Briefcase} />
 
           <div className="forms-container">
             <FormSelect label="Position" id="position_id">
@@ -114,12 +110,7 @@ function EmployeeRegisterPage() {
         </div>
 
         <div className="employee-form-section employment-info border-t">
-          <div className="section-header">
-            <div className="icon-container">
-              <DollarSign size={15} color="#364153" />
-            </div>
-            <h2>Compensation & Payroll</h2>
-          </div>
+          <SectionHeader title={"Compensation & Payroll"} icon={DollarSign} />
 
           <div className="forms-container">
             <FormInput label="Salary" id="salary" type="number" placeholder="$0.00" />
