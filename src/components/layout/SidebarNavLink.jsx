@@ -1,14 +1,14 @@
 import { NavLink } from "react-router-dom";
 
-function SidebarNavLink({ name, route, icon, fillIcon }) {
+function SidebarNavLink({ name, route, icon: Icon }) {
   return (
     <NavLink to={`/${route}`} className={({ isActive }) => `nav-btn ${isActive ? "active" : ""}`}>
-      {({ isActive }) => (
-        <>
-          <div className="nav-btn-icon">{isActive ? fillIcon : icon}</div>
-          <p>{name}</p>
-        </>
-      )}
+      <>
+        <div className="nav-btn-icon">
+          <Icon size={14} />
+        </div>
+        <p>{name}</p>
+      </>
     </NavLink>
   );
 }

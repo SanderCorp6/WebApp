@@ -1,8 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { IoArrowBack } from "react-icons/io5";
-import { GoPencil } from "react-icons/go";
-import { MdOutlineClose } from "react-icons/md";
-import { FiSave } from "react-icons/fi";
+import { Pencil, Save, X, ArrowLeft } from "lucide-react";
 
 export default function EmployeeActionsBar({
   isEditing,
@@ -18,14 +15,14 @@ export default function EmployeeActionsBar({
   return (
     <div className="top-actions">
       <button className="back-btn" onClick={() => navigate(-1)}>
-        <IoArrowBack />
+        <ArrowLeft size={18} />
       </button>
 
       <div>
         {!isEditing ? (
           <>
             <button className="edit-btn" onClick={onEdit}>
-              <GoPencil className="icon" />
+              <Pencil size={14} />
               <p>Edit</p>
             </button>
             <button
@@ -39,12 +36,12 @@ export default function EmployeeActionsBar({
         ) : (
           <>
             <button className="cancel-btn" onClick={onCancel}>
-              <MdOutlineClose className="icon" />
+              <X size={14} />
               <p>Cancel</p>
             </button>
 
             <button className="save-btn" onClick={onSave} disabled={isUpdating}>
-              <FiSave className="icon" />
+              <Save size={14} />
               <p>{isUpdating ? "Saving..." : "Save Changes"}</p>
             </button>
           </>

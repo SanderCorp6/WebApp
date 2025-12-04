@@ -3,9 +3,9 @@ import PageHeader from "../components/layout/PageHeader";
 
 function VacationsPage() {
   return (
-    <>
-      <PageHeader title="Vacations" />
-    </>
+    <div className="vacations-page">
+      <PageHeader title="Vacations" description="Manage time off and vacation requests" />
+    </div>
   );
 }
 

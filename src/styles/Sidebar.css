@@ -1,11 +1,14 @@
 #sidebar {
     width: 310px;
     height: 100%;
-    background-color: transparent;
-    padding: 10px;
+    border-radius: 12px;
+    border: 1px solid rgba(229,231,235,0.6);
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    background-color: white;
+    box-shadow: 
+        0px 1px 3px 0px rgba(0, 0, 0, 0.1),
+        0px 1px 2px -1px rgba(0, 0, 0, 0.1);
 
     transition: margin-left 0.3s ease-in-out;
 }
@@ -14,83 +17,85 @@
     display: flex;
     gap: 10px;
     color: #575757;
+    padding: 15px;
+    border-bottom: 1px solid rgba(229,231,235,0.6);
     align-items: center;
 }
 .user-image-border {
-    width: 50px;
-    height: 50px;
-    border: 1px solid #57575755;
+    width: 35px;
+    height: 35px;
     border-radius: 50%;
-    padding: 2px;
 }
 .user-image {
     width: 100%;
     height: 100%;
     border-radius: 50%;
-    /* border: 1px solid #575757; */
-    background-color: #57575725;
+    background-color: #101828;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 12px;
+    font-weight: 300;
 }
 .user-data h1 {
-    font-size: 16px;
-    font-weight: 500;
-}
-.user-data p {
     font-size: 13px;
     font-weight: 400;
+    color: #0a0a0a;
+}
+.user-data p {
+    font-size: 11px;
+    font-weight: 300;
+    color: #6a7282;
 }
 
 .nav-buttons {
     display: flex;
     flex-direction: column;
-    gap: 7px;
+    padding: 15px;
+    gap: 4px;
 }
 .nav-btn {
     display: flex;
     align-items: center;
     gap: 12px;
-    color: #6F6F6F;
+    color: #6a7282;
     border-radius: 8px;
     text-decoration: none;
-    padding: 10px 10px;
-}
-.nav-btn-icon {
-    font-size: 16px;
-    display: flex;
+    padding: 5px 10px;
 }
 .nav-btn p {
-    font-size: 14px;
-    font-weight: 500;
+    font-size: 12px;
+    font-weight: 400;
 }
-.nav-btn.active {
-    color: black;
-    background-color: #EBEBEB;
-    /* box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3); */
+.nav-btn.active, .nav-btn:hover {
+    color: #0a0a0a;
+    background-color: #f9fafb;
 }
 
 .info-section {
     display: flex;
     flex-direction: column;
     gap: 10px;
+    padding: 15px;
     margin-top: auto;
 }
 .info-btn {
     display: flex;
-    gap: 10px;
     align-items: center;
-    color: #6F6F6F;
-    border-radius: 6px;
+    gap: 10px;
+    color: #6a7282;
+    border-radius: 8px;
     text-decoration: none;
     padding: 0px 10px;
     cursor: pointer;
-    width: fit-content;
+    padding: 10px 10px;
 }
 .info-btn:hover {
-    color: rgb(63, 63, 63);
-}
-.info-btn-icon {
-    font-size: 16px;
-    display: flex;
+    color: #0a0a0a;
+    background-color: #f9fafb;
 }
 .info-btn p {
-    font-weight: 500;
+    font-size: 12px;
+    font-weight: 400;
 }

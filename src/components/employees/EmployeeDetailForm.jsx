@@ -1,11 +1,10 @@
-import { FiBriefcase, FiMail, FiDollarSign, FiAward } from "react-icons/fi";
-
 import { FormInput, FormSelect } from "../ui/FormInput";
 import { FormSection } from "../ui/FormSection";
 import { EmployeeHeaderInfo } from "./EmployeeHeaderInfo";
 import { useEmployeeForm } from "../../hooks/useEmployeeForm";
 import EmployeeActionsBar from "./EmployeeActionsBar";
 import EmployeeHistory from "./EmployeeHistory";
+import { Briefcase, Mail, DollarSign, Award } from "lucide-react";
 
 function EmployeeDetailForm({
   employee,
@@ -36,7 +35,7 @@ function EmployeeDetailForm({
         <EmployeeHeaderInfo employee={employee} />
 
         {/* PERSONAL INFO */}
-        <FormSection title="PERSONAL INFORMATION" icon={FiMail}>
+        <FormSection title="PERSONAL INFORMATION" icon={Mail}>
           <FormInput
             label="First Name"
             id="first_name"
@@ -89,7 +88,7 @@ function EmployeeDetailForm({
         </FormSection>
 
         {/* EMPLOYMENT INFORMATION */}
-        <FormSection title="EMPLOYMENT INFORMATION" icon={FiBriefcase}>
+        <FormSection title="EMPLOYMENT INFORMATION" icon={Briefcase}>
           <FormSelect
             className="cl-2"
             label="Role"
@@ -156,11 +155,19 @@ function EmployeeDetailForm({
             ))}
           </FormSelect>
 
-          <FormInput label="Hire Date" id="hire_date" type="date" value={formData.hire_date} disabled />
+          <FormInput
+            label="Hire Date"
+            id="hire_date"
+            isOptional={true}
+            type="date"
+            value={formData.hire_date}
+            disabled
+          />
           {formData.termination_date && (
             <FormInput
               label="Termination Date"
               id="termination_date"
+              isOptional={true}
               type="date"
               value={formData.termination_date}
               disabled
@@ -168,11 +175,18 @@ function EmployeeDetailForm({
           )}
 
           {formData.reentry_date && (
-            <FormInput label="Reentry Date" id="reentry_date" type="date" value={formData.reentry_date} disabled />
+            <FormInput
+              label="Reentry Date"
+              id="reentry_date"
+              isOptional={true}
+              type="date"
+              value={formData.reentry_date}
+              disabled
+            />
           )}
         </FormSection>
 
-        <FormSection title="PAYROLL INFORMATION" icon={FiDollarSign}>
+        <FormSection title="PAYROLL INFORMATION" icon={DollarSign}>
           <FormInput
             label="Salary"
             id="salary"
@@ -200,12 +214,10 @@ function EmployeeDetailForm({
             onChange={handleInputChange}
             disabled={!isEditing || isUpdating}
           >
-            <option value="PROD-A">PROD-A</option>
-            <option value="PROD-B">PROD-B</option>
-            <option value="PROD-C">PROD-C</option>
             <option value="CC-DES">CC-DES</option>
             <option value="CC-PROD">CC-PROD</option>
-            <option value="CC-ADM">DES-ADM</option>
+            <option value="CC-ADM">CC-ADM</option>
+            <option value="CC-DES">CC-DES</option>
           </FormSelect>
           <FormInput
             className="cl-2"
@@ -217,7 +229,7 @@ function EmployeeDetailForm({
           />
         </FormSection>
 
-        <FormSection title="VACATION & BENEFITS" icon={FiAward}>
+        <FormSection title="VACATION & BENEFITS" icon={Award}>
           <FormInput
             label="Total Vacation Days"
             id="vacation_days_total"
@@ -229,6 +241,7 @@ function EmployeeDetailForm({
           <FormInput
             label="Vacation Days Taken"
             id="vacation_days_taken"
+            isOptional={true}
             value={formData.vacation_days_taken}
             onChange={handleInputChange}
             disabled

@@ -18,7 +18,24 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
         <BrowserRouter>
-          <Toaster position="top-center" reverseOrder={false} />
+          <Toaster
+            position="top-center"
+            reverseOrder={false}
+            toastOptions={{
+              style: {
+                border: "1px solid #101828",
+                padding: "13px",
+                fontSize: "13px",
+                fontWeight: "400",
+                color: "#101828",
+              },
+              iconTheme: {
+                primary: "#101828",
+                secondary: "#FFFAEE",
+              },
+              duration: 4000,
+            }}
+          />
           <AppRouter />
         </BrowserRouter>
       </AuthProvider>

@@ -1,0 +1,6 @@
+.vacations-page {
+    display: flex;
+    gap: 22px;
+    flex-direction: column;
+    padding: 25px 20px;
+}

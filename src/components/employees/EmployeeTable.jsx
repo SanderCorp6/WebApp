@@ -7,13 +7,13 @@ function EmployeeTable({ employees, sortBy, sortDir, onSort }) {
   }
 
   const columns = [
-    { label: "Name", key: "name" },
-    { label: "Position", key: "position" },
-    { label: "Department", key: "department" },
-    { label: "Status", key: "status" },
-    { label: "Hire Date", key: "date" },
-    { label: "Salary", key: "salary" },
-    { label: "Actions", key: null },
+    { label: "NAME", key: "name" },
+    { label: "POSITION", key: "position" },
+    { label: "DEPARTMENT", key: "department" },
+    { label: "STATUS", key: "status" },
+    { label: "HIRE DATE", key: "date" },
+    { label: "SALARY", key: "salary" },
+    { label: "ACTIONS", key: null },
   ];
 
   return (

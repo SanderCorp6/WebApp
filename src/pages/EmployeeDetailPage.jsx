@@ -4,7 +4,6 @@ import { useEmployee } from "../hooks/useEmployee";
 import { usePositions } from "../hooks/usePositions";
 import { useDepartments } from "../hooks/useDepartments";
 import { useEmployeeOptions } from "../hooks/useEmployeeOptions";
-import PageHeader from "../components/layout/PageHeader";
 import EmployeeDetailForm from "../components/employees/EmployeeDetailForm";
 
 function EmployeeDetailPage() {
@@ -25,15 +24,8 @@ function EmployeeDetailPage() {
     return <div className="error-message">Employee not found.</div>;
   }
 
-  const breadcrumbs = [
-    { label: "Employees", path: "/" },
-    { label: employee.full_name, active: true },
-  ];
-
   return (
     <div className="employee-detail-page">
-      <PageHeader breadcrumbs={breadcrumbs} />
-
       <EmployeeDetailForm
         key={employee.id}
         employee={employee}

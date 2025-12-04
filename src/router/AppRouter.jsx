@@ -9,6 +9,7 @@ import EmployeesPage from "../pages/EmployeesPage";
 import VacationsPage from "../pages/VacationsPage";
 import OpeningsPage from "../pages/OpeningsPage";
 import EmployeeDetailPage from "../pages/EmployeeDetailPage";
+import EmployeeRegisterPage from "../pages/EmployeeRegisterPage";
 
 function AppRouter() {
   const { user } = useAuth();
@@ -28,6 +29,7 @@ function AppRouter() {
       >
         <Route index element={<EmployeesPage />} />
         <Route path="employees/:id" element={<EmployeeDetailPage />} />
+        <Route path="employees/register" element={<EmployeeRegisterPage />} />
         <Route path="vacations" element={<VacationsPage />} />
         <Route path="openings" element={<OpeningsPage />} />
       </Route>
