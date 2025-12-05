@@ -1,7 +1,7 @@
 import { useDepartments } from "../../hooks/useDepartments";
 import { usePositions } from "../../hooks/usePositions";
 import { IoCloseCircleSharp } from "react-icons/io5";
-import { Search, Plus } from "lucide-react";
+import { Search, Plus, Download } from "lucide-react";
 
 const FilterButton = ({ value, filter, setFilter, color, defaultColor }) => {
   const isActive = filter === value;
@@ -30,6 +30,7 @@ function EmployeeToolbar({
   positionId,
   setPositionId,
   onAddClick,
+  onExportClick,
 }) {
   const { departments } = useDepartments();
   const { positions } = usePositions();
@@ -52,7 +53,10 @@ function EmployeeToolbar({
             onChange={(e) => setSearchTerm(e.target.value)}
           />
         </div>
-        <button onClick={onAddClick}>
+        <button className="export-data-btn" onClick={onExportClick}>
+          <Download size={13} /> Export
+        </button>
+        <button className="add-employee-btn" onClick={onAddClick}>
           <Plus size={13} /> Add Employee
         </button>
       </div>

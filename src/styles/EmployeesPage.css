@@ -196,18 +196,33 @@ table tbody tr:hover {
 }
 
 .filters-section > .creation-and-search > button {
-    background-color: #101828;
-    color: white;
     border: none;
-    padding: 0px 17px;
+    padding: 0px 18px;
     border-radius: 8px;
     cursor: pointer;
     font-size: 12px;
-    font-weight: 300;
+    font-weight: 400;
 
     display: flex;
     align-items: center;
-    gap: 5px;
+    gap: 7px;
+    transition: all 0.3s ease;
+}
+.filters-section > .creation-and-search > .add-employee-btn {
+    background-color: #101828;
+    color: white;
+    border: 1px solid #101828;
+}
+.filters-section > .creation-and-search > .add-employee-btn:hover {
+    background-color: #1a202e;
+}
+.filters-section > .creation-and-search > .export-data-btn {
+    background-color: white;
+    color: #364153;
+    border: 1px solid rgba(229,231,235,0.6);
+}
+.filters-section > .creation-and-search > .export-data-btn:hover {
+    background-color: #f9fafb;
 }
 
 .filters-section > .filters {
