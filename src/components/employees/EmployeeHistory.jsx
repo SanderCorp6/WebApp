@@ -1,4 +1,4 @@
-import { Building2, TrendingUp, DollarSign, AlertCircle, History } from "lucide-react";
+import { Building2, TrendingUp, DollarSign, AlertCircle, History, AlertTriangle } from "lucide-react";
 
 const formatDate = (dateString) => {
   if (!dateString) {
@@ -33,6 +33,11 @@ const getChangeTypeIcon = (type) => {
       icon: DollarSign,
       color: "#43bb6fff",
       bgColor: "#dbffe8ff",
+    },
+    WARNING: {
+      icon: AlertTriangle,
+      color: "#e32727ea",
+      bgColor: "#ffdbdbff",
     },
     DEFAULT: {
       icon: AlertCircle,
@@ -94,7 +99,8 @@ function EmployeeHistory({ history }) {
                       {item.previous_value && item.new_value && <span className="arrow">→</span>}
                       {item.new_value && (
                         <span>
-                          To: <strong>{item.new_value}</strong>
+                          {item.change_type !== "WARNING" ? "To: " : "Status: "}
+                          <strong>{item.new_value}</strong>
                         </span>
                       )}
                     </div>

@@ -35,3 +35,8 @@ export const registerEmployee = async (data) => {
   const response = await api.post("/employees", data);
   return response.data;
 };
+
+export const addEmployeeWarning = async (id, reason) => {
+  const response = await api.post(`/employees/warnings/${id}`, { reason });
+  return response.data;
+};

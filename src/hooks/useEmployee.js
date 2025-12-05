@@ -1,5 +1,5 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { getEmployeeById, getEmployeeHistory, updateEmployee } from "../api/employeeService";
+import { getEmployeeById, getEmployeeHistory, updateEmployee, addEmployeeWarning } from "../api/employeeService";
 
 export const useEmployee = (id) => {
   const queryClient = useQueryClient();
@@ -28,13 +28,25 @@ export const useEmployee = (id) => {
     },
   });
 
+  const addWarningMutation = useMutation({
+    mutationFn: (reason) => addEmployeeWarning(id, reason),
+    onSuccess: () => {
+      queryClient.invalidateQueries(["employee", "history", id]);
+    },
+  });
+
   return {
     employee: query.data,
+
     history: historyQuery.data?.history || [],
     isLoading: query.isLoading || historyQuery.isLoading,
     isError: query.isError || historyQuery.isError,
     error: query.error || historyQuery.error,
+
     updateEmployee: updateMutation.mutateAsync,
     isUpdating: updateMutation.isPending,
+
+    addWarning: addWarningMutation.mutateAsync,
+    isAddingWarning: addWarningMutation.isPending,
   };
 };

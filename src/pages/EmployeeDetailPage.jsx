@@ -9,7 +9,8 @@ import EmployeeDetailForm from "../components/employees/EmployeeDetailForm";
 function EmployeeDetailPage() {
   const { id } = useParams();
 
-  const { employee, history, isLoading, isError, updateEmployee, isUpdating } = useEmployee(id);
+  const { employee, history, isLoading, isError, updateEmployee, isUpdating, addWarning, isAddingWarning } =
+    useEmployee(id);
   const { employeesOptions } = useEmployeeOptions();
   const { positions } = usePositions();
   const { departments } = useDepartments();
@@ -32,6 +33,8 @@ function EmployeeDetailPage() {
         history={history}
         updateEmployee={updateEmployee}
         isUpdating={isUpdating}
+        addWarning={addWarning}
+        isAddingWarning={isAddingWarning}
         positions={positions}
         departments={departments}
         employeesOptions={employeesOptions}
