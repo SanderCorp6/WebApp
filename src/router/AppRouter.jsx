@@ -10,6 +10,7 @@ import VacationsPage from "../pages/VacationsPage";
 import OpeningsPage from "../pages/OpeningsPage";
 import EmployeeDetailPage from "../pages/EmployeeDetailPage";
 import EmployeeRegisterPage from "../pages/EmployeeRegisterPage";
+import ActivateAccountPage from "../pages/ActivateAccountPage";
 
 function AppRouter() {
   const { user } = useAuth();
@@ -18,6 +19,7 @@ function AppRouter() {
     <Routes>
       <Route path="/signup" element={user ? <Navigate to="/" /> : <SignupPage />} />
       <Route path="/login" element={user ? <Navigate to="/" /> : <LoginPage />} />
+      <Route path="/activate" element={<ActivateAccountPage />} />
 
       <Route
         path="/"

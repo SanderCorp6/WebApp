@@ -14,11 +14,11 @@ export const useRegisterEmployee = () => {
     email: "",
     phone_number: "",
     address: "",
-    position_id: "",
-    department_id: "",
+    position_id: "1",
+    department_id: "1",
     role: "Employee",
     contract_type: "Full-time",
-    supervisor_id: "",
+    supervisor_id: null,
     vacation_days_total: 20,
     salary: "",
     periodicity: "Monthly",
@@ -34,7 +34,6 @@ export const useRegisterEmployee = () => {
   };
 
   const register = async () => {
-    // Validación simple
     const requiredFields = [
       "first_name",
       "last_name",
@@ -45,7 +44,6 @@ export const useRegisterEmployee = () => {
       "position_id",
       "department_id",
       "role",
-      "supervisor_id",
       "contract_type",
       "vacation_days_total",
       "salary",

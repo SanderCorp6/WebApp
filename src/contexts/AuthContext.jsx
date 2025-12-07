@@ -1,5 +1,5 @@
 import { createContext, useState, useEffect } from "react";
-import { loginUser } from "../api/authService";
+import { loginUser, activateUser } from "../api/authService";
 
 const AuthContext = createContext();
 
@@ -28,11 +28,18 @@ function AuthProvider({ children }) {
     localStorage.removeItem("user");
     setUser(null);
   };
+  const activate = async (token, password) => {
+    const userData = await activateUser(token, password);
+    console.log(userData.user);
+    localStorage.setItem("user", JSON.stringify(userData.user));
+    setUser(userData.user);
+  };
 
   const value = {
     user,
     loading,
     login,
+    activate,
     logout,
   };
 
