@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Camera, Upload, Lock, Info, Check, User, Shield, HelpCircle, ChevronRight } from "lucide-react";
 import toast from "react-hot-toast";
 import { Modal } from "../ui/Modal";
@@ -12,12 +12,22 @@ export function SettingsModal({ user, open, onOpenChange }) {
   const { updateUser } = useAuth();
   const [activeTab, setActiveTab] = useState("profile");
   const [profileData, setProfileData] = useState({
-    first_name: user.first_name,
-    last_name: user.last_name,
-    email: user.email,
-    role: user.role,
-    phone_number: user.phone_number,
+    first_name: user?.first_name,
+    last_name: user?.last_name,
+    email: user?.email,
+    role: user?.role,
+    phone_number: user?.phone_number,
   });
+
+  useEffect(() => {
+    setProfileData({
+      first_name: user?.first_name,
+      last_name: user?.last_name,
+      email: user?.email,
+      role: user?.role,
+      phone_number: user?.phone_number,
+    });
+  }, [user]);
 
   const [securityData, setSecurityData] = useState({
     currentPassword: "",
