@@ -4,10 +4,14 @@ import { useAuth } from "../../hooks/useAuth";
 import "../../styles/Sidebar.css";
 import { useState } from "react";
 import { SettingsModal } from "../settings/SettingsModal";
+import { useEmployee } from "../../hooks/useEmployee";
 
 function Sidebar() {
   const { user, logout } = useAuth();
+  const { employee } = useEmployee(user?.id);
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
+
+  const currentUser = employee || user;
 
   const handleLogout = () => {
     logout();
@@ -19,17 +23,25 @@ function Sidebar() {
         <div className="profile-info">
           <div className="user-image-border">
             <div className="user-image">
-              {user?.name
-                ?.split(" ")
-                .slice(0, 2)
-                .map((word) => word[0])
-                .join("")
-                .toUpperCase()}
+              {currentUser?.image_url ? (
+                <img
+                  src={currentUser.image_url}
+                  alt={currentUser.full_name}
+                  style={{ width: "100%", height: "100%", objectFit: "cover", borderRadius: "50%" }}
+                />
+              ) : (
+                currentUser?.full_name
+                  ?.split(" ")
+                  .slice(0, 2)
+                  .map((word) => word[0])
+                  .join("")
+                  .toUpperCase()
+              )}
             </div>
           </div>
           <div className="user-data">
-            <h1>{user?.name}</h1>
-            <p>{user?.role}</p>
+            <h1>{currentUser?.full_name}</h1>
+            <p>{currentUser?.role}</p>
           </div>
         </div>
 
@@ -51,7 +63,7 @@ function Sidebar() {
         </div>
       </section>
 
-      <SettingsModal user={user} open={isSettingsOpen} onOpenChange={setIsSettingsOpen} />
+      <SettingsModal user={currentUser} open={isSettingsOpen} onOpenChange={setIsSettingsOpen} />
     </>
   );
 }

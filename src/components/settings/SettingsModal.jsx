@@ -136,7 +136,7 @@ export function SettingsModal({ user, open, onOpenChange }) {
                       ) : (
                         <div className="avatar-placeholder">
                           <span>
-                            {user?.name
+                            {user?.full_name
                               ?.split(" ")
                               .slice(0, 2)
                               .map((word) => word[0])
