@@ -1,5 +1,12 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { getEmployeeById, getEmployeeHistory, updateEmployee, addEmployeeWarning } from "../api/employeeService";
+import {
+  getEmployeeById,
+  getEmployeeHistory,
+  updateEmployee,
+  addEmployeeWarning,
+  uploadEmployeeImage,
+} from "../api/employeeService";
+import toast from "react-hot-toast";
 
 export const useEmployee = (id) => {
   const queryClient = useQueryClient();
@@ -35,6 +42,17 @@ export const useEmployee = (id) => {
     },
   });
 
+  const uploadImageMutation = useMutation({
+    mutationFn: (file) => uploadEmployeeImage(id, file),
+    onSuccess: () => {
+      queryClient.invalidateQueries(["employee", id]);
+      toast.success("Profile picture updated!");
+    },
+    onError: () => {
+      toast.error("Failed to upload image");
+    },
+  });
+
   return {
     employee: query.data,
 
@@ -48,5 +66,8 @@ export const useEmployee = (id) => {
 
     addWarning: addWarningMutation.mutateAsync,
     isAddingWarning: addWarningMutation.isPending,
+
+    uploadImage: uploadImageMutation.mutateAsync,
+    isUploadingImage: uploadImageMutation.isPending,
   };
 };

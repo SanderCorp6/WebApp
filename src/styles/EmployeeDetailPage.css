@@ -137,6 +137,12 @@
     color: white;
     font-size: 28px;
     font-weight: 500;
+    overflow: hidden;
+}
+.employee-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 .main-info {
     display: flex;

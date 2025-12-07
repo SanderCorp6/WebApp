@@ -7,10 +7,10 @@ import { useEmployee } from "../../hooks/useEmployee";
 import { useAuth } from "../../hooks/useAuth";
 
 export function SettingsModal({ user, open, onOpenChange }) {
-  const { updateEmployee } = useEmployee(user.id);
+  const { updateEmployee, uploadImage } = useEmployee(user.id);
+
   const { updateUser } = useAuth();
   const [activeTab, setActiveTab] = useState("profile");
-  const [profileImage, setProfileImage] = useState(null);
   const [profileData, setProfileData] = useState({
     first_name: user.first_name,
     last_name: user.last_name,
@@ -30,13 +30,12 @@ export function SettingsModal({ user, open, onOpenChange }) {
   const handleImageUpload = (e) => {
     const file = e.target.files?.[0];
     if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setProfileImage(reader.result);
-        toast.success("Profile picture updated successfully!");
-      };
-      reader.readAsDataURL(file);
+      uploadImage(file);
     }
+  };
+
+  const handleRemoveImage = () => {
+    updateEmployee({ image_url: null });
   };
 
   const handleSaveProfile = async () => {
@@ -132,12 +131,12 @@ export function SettingsModal({ user, open, onOpenChange }) {
                   <div className="section-title">Profile Picture</div>
                   <div className="profile-picture-card">
                     <div className="avatar-container">
-                      {profileImage ? (
-                        <img src={profileImage} alt="Profile" className="avatar" />
+                      {user.image_url ? (
+                        <img src={user.image_url} alt="Profile" className="avatar" />
                       ) : (
                         <div className="avatar-placeholder">
                           <span>
-                            {profileData?.name
+                            {user?.name
                               ?.split(" ")
                               .slice(0, 2)
                               .map((word) => word[0])
@@ -167,10 +166,10 @@ export function SettingsModal({ user, open, onOpenChange }) {
                           <Upload size={14} />
                           Upload Photo
                         </button>
-                        {profileImage && (
+                        {user.image_url && (
                           <button
                             onClick={() => {
-                              setProfileImage(null);
+                              handleRemoveImage();
                               toast.success("Profile picture removed");
                             }}
                             className="btn btn-danger-outline"
