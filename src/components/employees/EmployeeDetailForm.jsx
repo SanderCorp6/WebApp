@@ -221,10 +221,12 @@ function EmployeeDetailForm({
             onChange={handleInputChange}
             disabled={!isEditing || isUpdating}
           >
-            <option value="CC-DES">CC-DES</option>
             <option value="CC-PROD">CC-PROD</option>
             <option value="CC-ADM">CC-ADM</option>
             <option value="CC-DES">CC-DES</option>
+            <option value="CC-ENG">CC-ENG</option>
+            <option value="CC-OPER">CC-OPER</option>
+            <option value="CC-HR">CC-HR</option>
           </FormSelect>
           <FormInput
             className="cl-2"

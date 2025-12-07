@@ -134,7 +134,7 @@ function EmployeesPages() {
           </div>
         )}
 
-        {isError && toast.error("Error loading employee list.")}
+        {isError && toast.error("Error loading employee list.") && "Error fetching employee list."}
 
         {!isLoading && !isError && (
           <EmployeeTable employees={employees} sortBy={sortBy} sortDir={sortDir} onSort={handleSort} />

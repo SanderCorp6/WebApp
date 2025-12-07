@@ -223,7 +223,11 @@
     height: 44px;
     border-radius: 7px;
     padding: 10px;
+    font-weight: 400;
+    font-size: 12px;
     color: #101828;
+    width: 100%;
+    min-width: 0;
 }
 .employee-detail-page .form-input > input:disabled, .employee-detail-page .form-input > select:disabled{
     background-color: #f9fafb;

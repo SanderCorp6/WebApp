@@ -35,12 +35,19 @@ function AuthProvider({ children }) {
     setUser(userData.user);
   };
 
+  const updateUser = (userData) => {
+    const updatedUser = { ...user, ...userData };
+    localStorage.setItem("user", JSON.stringify(updatedUser));
+    setUser(updatedUser);
+  };
+
   const value = {
     user,
     loading,
     login,
     activate,
     logout,
+    updateUser,
   };
 
   if (loading) {
