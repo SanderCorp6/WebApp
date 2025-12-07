@@ -1,4 +1,5 @@
 import "../styles/EmployeeDetailPage.css";
+import LoadingSpinner from "../components/ui/LoadingSpinner";
 import { useParams } from "react-router-dom";
 import { useEmployee } from "../hooks/useEmployee";
 import { usePositions } from "../hooks/usePositions";
@@ -16,7 +17,11 @@ function EmployeeDetailPage() {
   const { departments } = useDepartments();
 
   if (isLoading) {
-    return <div className="loading-container">Loading...</div>;
+    return (
+      <div className="loader-wrapper">
+        <LoadingSpinner size={40} className="spinner-primary" />
+      </div>
+    );
   }
   if (isError) {
     return <div className="error-message">Error loading employee details.</div>;

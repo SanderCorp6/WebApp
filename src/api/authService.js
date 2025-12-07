@@ -7,6 +7,5 @@ export const loginUser = async (email, password) => {
 
 export const activateUser = async (token, password) => {
   const response = await api.post("/auth/activate", { token, password });
-  console.log(response.data);
   return response.data;
 };

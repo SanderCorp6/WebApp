@@ -93,50 +93,22 @@ export const useEmployeeForm = (employee, updateEmployee) => {
       supervisor_id: formData.supervisor_id || null,
     };
 
-    await toast.promise(
-      updateEmployee(payload),
-      {
-        loading: "Updating employee...",
-        success: `${formData.first_name} ${formData.last_name} successfully updated!`,
-        error: "Error updating employee.",
-      },
-      {
-        position: "bottom-right",
-        duration: 3000,
-        style: {
-          fontSize: "13px",
-        },
-        iconTheme: {
-          primary: "#101828",
-          secondary: "#FFFAEE",
-        },
-      }
-    );
+    await toast.promise(updateEmployee(payload), {
+      loading: "Updating employee...",
+      success: `${formData.first_name} ${formData.last_name} successfully updated!`,
+      error: "Error updating employee.",
+    });
     setIsEditing(false);
   };
 
   const handleToggleStatus = async () => {
     const newStatus = employee.status === "Active" ? "Inactive" : "Active";
 
-    await toast.promise(
-      updateEmployee({ ...employee, status: newStatus }),
-      {
-        loading: "Updating employee...",
-        success: `${formData.first_name} ${formData.last_name} is now ${newStatus}!`,
-        error: "Error updating employee.",
-      },
-      {
-        position: "bottom-right",
-        duration: 3000,
-        style: {
-          fontSize: "13px",
-        },
-        iconTheme: {
-          primary: "#101828",
-          secondary: "#FFFAEE",
-        },
-      }
-    );
+    await toast.promise(updateEmployee({ ...employee, status: newStatus }), {
+      loading: "Updating employee...",
+      success: `${formData.first_name} ${formData.last_name} is now ${newStatus}!`,
+      error: "Error updating employee.",
+    });
   };
 
   return {

@@ -1,5 +1,6 @@
 import { createContext, useState, useEffect } from "react";
 import { loginUser, activateUser } from "../api/authService";
+import LoadingScreen from "../components/ui/LoadingScreen";
 
 const AuthContext = createContext();
 
@@ -30,7 +31,6 @@ function AuthProvider({ children }) {
   };
   const activate = async (token, password) => {
     const userData = await activateUser(token, password);
-    console.log(userData.user);
     localStorage.setItem("user", JSON.stringify(userData.user));
     setUser(userData.user);
   };
@@ -44,7 +44,7 @@ function AuthProvider({ children }) {
   };
 
   if (loading) {
-    return null;
+    return <LoadingScreen />;
   }
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

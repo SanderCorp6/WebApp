@@ -278,3 +278,19 @@ table tbody tr:hover {
 .filters-section .filters .filter-item .reset-filter-btn:hover {
     color: #101828;
 }
+
+/* --------------------------------------------------------------------- */
+/* LOADER */
+/* --------------------------------------------------------------------- */
+.loader-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 50vh;
+    width: 100%;
+    padding: 32px;
+}
+
+.spinner-colors {
+    color: #6a7282;
+}

@@ -8,6 +8,7 @@ import { useEmployees } from "../hooks/useEmployees";
 import { useDebounce } from "../hooks/useDebounce";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+import LoadingSpinner from "../components/ui/LoadingSpinner";
 
 function EmployeesPages() {
   const navigate = useNavigate();
@@ -127,9 +128,13 @@ function EmployeesPages() {
 
       {/* Employees Table */}
       <div className="employees-table">
-        {isLoading && <p>Loading Data...</p>}
+        {isLoading && (
+          <div className="loader-wrapper">
+            <LoadingSpinner size={40} className="spinner-colors" />
+          </div>
+        )}
 
-        {isError && <p className="error-message">Error loading employee list.</p>}
+        {isError && toast.error("Error loading employee list.")}
 
         {!isLoading && !isError && (
           <EmployeeTable employees={employees} sortBy={sortBy} sortDir={sortDir} onSort={handleSort} />

@@ -397,9 +397,6 @@
     padding-bottom: 20px;
     border-bottom: 1px solid rgba(229,231,235,0.6);
 }
-#warning-modal > .form-input > label {
-    
-}
 #warning-modal > .form-input > textarea {
     width: 100%;
     padding: 10px;
@@ -470,4 +467,20 @@
         flex-direction: column;
         text-align: center;
     }
+}
+
+/* --------------------------------------------------------------------- */
+/* LOADER */
+/* --------------------------------------------------------------------- */
+.loader-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 60vh;
+    width: 100%;
+    padding: 32px;
+}
+
+.spinner-primary {
+    color: #364153;
 }
