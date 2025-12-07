@@ -80,20 +80,23 @@
     grid-template-columns: repeat(2, 1fr);
     gap: 15px;
 }
-.form-input {
+.employee-register-page .form-input {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
     color: #364153;
     
 }
-.form-input > label {
+.employee-register-page .form-input > label {
     color: #364153;
     font-weight: 400;
     font-size: 12px;
 }
-.form-input > label > span {
+.employee-register-page .form-input > label > span {
     margin-left: 5px;
     color: #ef4444;
 }
-.form-input > input, .form-input > select{
+.employee-register-page .form-input > input, .employee-register-page .form-input > select{
     border: 1px solid rgba(229,231,235,0.6);
     background-color: #f9fafb;
     height: 44px;
@@ -102,17 +105,18 @@
     font-size: 12px;
     border-radius: 7px;
     padding: 10px;
+    width: 100%;
+    min-width: 0;
 }
-.form-input > input:focus, .form-input > select:focus {
+.employee-register-page .form-input > input:focus, .employee-register-page .form-input > select:focus {
     border-color: transparent;
     outline: 2px solid #e6e8e9;
-    /* outline-offset: -2px; */
 }
-.form-input > input::placeholder {
+.employee-register-page .form-input > input::placeholder {
     color: #9b9b9b;
     font-weight: 400;
 }
-.form-input > input[type="date"] {
+.employee-register-page .form-input > input[type="date"] {
     border-radius: 7px;
 }
 
