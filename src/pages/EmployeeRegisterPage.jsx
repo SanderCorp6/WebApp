@@ -175,10 +175,12 @@ function EmployeeRegisterPage() {
             </FormSelect>
 
             <FormSelect label="Cost Center" id="cost_center" value={formData.cost_center} onChange={handleChange}>
-              <option value="CC-DES">CC-DES</option>
               <option value="CC-PROD">CC-PROD</option>
               <option value="CC-ADM">CC-ADM</option>
               <option value="CC-DES">CC-DES</option>
+              <option value="CC-ENG">CC-ENG</option>
+              <option value="CC-OPER">CC-OPER</option>
+              <option value="CC-HR">CC-HR</option>
             </FormSelect>
           </div>
         </div>

@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { Pencil, Save, X, ArrowLeft } from "lucide-react";
+import { Pencil, Save, X, ArrowLeft, AlertTriangle } from "lucide-react";
 
 export default function EmployeeActionsBar({
   isEditing,
@@ -9,6 +9,7 @@ export default function EmployeeActionsBar({
   onCancel,
   onSave,
   onToggleStatus,
+  onAddWarning,
 }) {
   const navigate = useNavigate();
 
@@ -21,6 +22,11 @@ export default function EmployeeActionsBar({
       <div>
         {!isEditing ? (
           <>
+            <button className="add-warning-btn" onClick={onAddWarning}>
+              <AlertTriangle size={14} />
+              <p>Add Warning</p>
+            </button>
+
             <button className="edit-btn" onClick={onEdit}>
               <Pencil size={14} />
               <p>Edit</p>

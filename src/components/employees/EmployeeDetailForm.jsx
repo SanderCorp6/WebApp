@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { FormInput, FormSelect } from "../ui/FormInput";
 import { FormSection } from "../ui/FormSection";
 import { EmployeeHeaderInfo } from "./EmployeeHeaderInfo";
@@ -5,18 +6,23 @@ import { useEmployeeForm } from "../../hooks/useEmployeeForm";
 import EmployeeActionsBar from "./EmployeeActionsBar";
 import EmployeeHistory from "./EmployeeHistory";
 import { Briefcase, Mail, DollarSign, Award } from "lucide-react";
+import AddWarningModal from "./AddWarningModal";
 
 function EmployeeDetailForm({
   employee,
   history,
   updateEmployee,
   isUpdating,
+  addWarning,
+  isAddingWarning,
   positions,
   departments,
   employeesOptions,
 }) {
   const { formData, isEditing, setIsEditing, handleInputChange, handleSave, handleCancel, handleToggleStatus } =
     useEmployeeForm(employee, updateEmployee);
+
+  const [isWarningModalOpen, setIsWarningModalOpen] = useState(false);
 
   return (
     <>
@@ -29,6 +35,7 @@ function EmployeeDetailForm({
         onCancel={handleCancel}
         onSave={handleSave}
         onToggleStatus={handleToggleStatus}
+        onAddWarning={() => setIsWarningModalOpen(true)}
       />
 
       <div className="detail-container">
@@ -214,10 +221,12 @@ function EmployeeDetailForm({
             onChange={handleInputChange}
             disabled={!isEditing || isUpdating}
           >
-            <option value="CC-DES">CC-DES</option>
             <option value="CC-PROD">CC-PROD</option>
             <option value="CC-ADM">CC-ADM</option>
             <option value="CC-DES">CC-DES</option>
+            <option value="CC-ENG">CC-ENG</option>
+            <option value="CC-OPER">CC-OPER</option>
+            <option value="CC-HR">CC-HR</option>
           </FormSelect>
           <FormInput
             className="cl-2"
@@ -256,6 +265,14 @@ function EmployeeDetailForm({
 
         <EmployeeHistory history={history} />
       </div>
+
+      <AddWarningModal
+        isOpen={isWarningModalOpen}
+        employeeName={employee.full_name}
+        onClose={() => setIsWarningModalOpen(false)}
+        onConfirm={addWarning}
+        isLoading={isAddingWarning}
+      />
     </>
   );
 }

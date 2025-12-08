@@ -35,3 +35,20 @@ export const registerEmployee = async (data) => {
   const response = await api.post("/employees", data);
   return response.data;
 };
+
+export const addEmployeeWarning = async (id, reason) => {
+  const response = await api.post(`/employees/warnings/${id}`, { reason });
+  return response.data;
+};
+
+export const uploadEmployeeImage = async (id, file) => {
+  const formData = new FormData();
+  formData.append("image", file);
+
+  const response = await api.post(`/employees/${id}/upload-image`, formData, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
+  return response.data;
+};

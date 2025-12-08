@@ -6,3 +6,19 @@
   box-sizing: border-box;
   font-family: 'Inter';
 }
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+.text-primary {
+    color: #0a0a0a;
+}

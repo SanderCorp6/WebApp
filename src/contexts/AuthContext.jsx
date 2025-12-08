@@ -1,5 +1,6 @@
 import { createContext, useState, useEffect } from "react";
-import { loginUser } from "../api/authService";
+import { loginUser, activateUser } from "../api/authService";
+import LoadingScreen from "../components/ui/LoadingScreen";
 
 const AuthContext = createContext();
 
@@ -28,16 +29,29 @@ function AuthProvider({ children }) {
     localStorage.removeItem("user");
     setUser(null);
   };
+  const activate = async (token, password) => {
+    const userData = await activateUser(token, password);
+    localStorage.setItem("user", JSON.stringify(userData.user));
+    setUser(userData.user);
+  };
+
+  const updateUser = (userData) => {
+    const updatedUser = { ...user, ...userData };
+    localStorage.setItem("user", JSON.stringify(updatedUser));
+    setUser(updatedUser);
+  };
 
   const value = {
     user,
     loading,
     login,
+    activate,
     logout,
+    updateUser,
   };
 
   if (loading) {
-    return null;
+    return <LoadingScreen />;
   }
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
