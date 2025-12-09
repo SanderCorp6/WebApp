@@ -1,6 +1,447 @@
 .vacations-page {
-    display: flex;
-    gap: 22px;
-    flex-direction: column;
-    padding: 25px 20px;
+  flex: 1;
+  background-color: var(--background);
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.1), 0px 1px 2px -1px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  height: 100%;
+}
+
+.vacations-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden; /* Stop main scroll */
+  padding: 24px;
+}
+
+.vacations-scrollable-content {
+  flex: 1;
+  overflow-y: auto;
+  min-height: 0;
+  padding-right: 8px; /* For scrollbar space */
+}
+
+/* ... existing styles ... */
+
+.team-view-grid {
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+  gap: 24px;
+  flex: 1;
+  min-height: 0; /* Important for nested flex scroll */
+  height: 100%;
+  overflow: hidden;
+}
+
+.pending-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  overflow-y: auto;
+  padding-right: 8px;
+}
+
+.request-details-column {
+  overflow-y: auto;
+  padding-right: 8px;
+  height: 100%;
+}
+
+.vacations-header-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 24px;
+}
+
+.vacations-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--foreground);
+  letter-spacing: -0.01em;
+}
+
+.vacations-description {
+  font-size: 14px;
+  color: var(--muted-foreground);
+  margin-top: 4px;
+}
+
+.vacations-tabs {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background-color: var(--secondary);
+  padding: 4px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  width: fit-content;
+  margin-bottom: 24px;
+}
+
+.tab-button {
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--muted-foreground);
+}
+
+.tab-button:hover {
+  color: var(--accent-foreground);
+}
+
+.tab-button.active {
+  background-color: var(--background);
+  color: var(--foreground);
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+.tab-badge {
+  margin-left: 8px;
+  padding: 2px 8px;
+  background-color: var(--destructive);
+  color: white;
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: 9999px;
+}
+
+.vacations-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.stat-card {
+  border-radius: 8px;
+  padding: 20px;
+  color: white;
+}
+
+.stat-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.stat-value {
+  font-size: 30px; /* 3xl approx */
+  font-weight: 700;
+}
+
+.stat-label {
+  font-size: 14px;
+  font-weight: 500;
+  opacity: 0.9;
+}
+
+.stat-sublabel {
+  font-size: 12px;
+  opacity: 0.7;
+  margin-top: 4px;
+}
+
+.bg-blue-gradient {
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+}
+
+.bg-red-gradient {
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+}
+
+.bg-green-gradient {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+}
+
+.request-button-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 24px;
+}
+
+.btn-primary {
+  background-color: #101828;
+  color: white;
+  padding: 0 16px;
+  height: 44px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn-primary:hover {
+  background-color: #1a202e;
+}
+
+.requests-section-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--foreground);
+  margin-bottom: 16px;
+}
+
+.requests-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.request-card {
+  background-color: var(--background);
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  padding: 16px;
+  transition: box-shadow 0.2s;
+}
+
+.request-card:hover {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.request-card-content {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.type-icon-wrapper {
+  padding: 10px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.request-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.request-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.request-type-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--foreground);
+}
+
+.status-badge {
+  padding: 2px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.status-approved {
+  background-color: #d1fae5;
+  color: #065f46;
+}
+
+.status-rejected {
+  background-color: #fee2e2;
+  color: #991b1b;
+}
+
+.status-pending {
+  background-color: #fef3c7;
+  color: #92400e;
+}
+
+.request-meta {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 12px;
+  color: var(--muted-foreground);
+  margin-bottom: 8px;
+}
+
+.meta-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.request-description {
+  font-size: 14px;
+  color: var(--accent-foreground);
+}
+
+/* Team Requests specific styles */
+
+.selectable-request-card {
+  width: 100%;
+  text-align: left;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  padding: 16px;
+  background-color: var(--background);
+  transition: all 0.2s;
+  cursor: pointer;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.selectable-request-card:hover {
+  border-color: #101828;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+.selectable-request-card.selected {
+  background-color: var(--secondary);
+  border-color: #101828;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+.avatar-placeholder {
+  width: 40px;
+  height: 40px;
+  border-radius: 9999px;
+  background-color: var(--secondary);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--accent-foreground);
+}
+
+.request-details-panel {
+  background-color: var(--background);
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  padding: 24px;
+}
+
+.details-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.large-avatar {
+  width: 64px;
+  height: 64px;
+  font-size: 18px;
+  font-weight: 700;
+  color: white;
+ }
+
+.date-range-container {
+  background-color: var(--secondary);
+  border-radius: 8px;
+  padding: 16px;
+  border: 1px solid var(--border);
+  margin-bottom: 24px;
+}
+
+.date-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  text-align: center;
+}
+
+.date-box {
+  background-color: var(--background);
+  border-radius: 8px;
+  padding: 12px;
+  border: 1px solid var(--border);
+}
+
+.duration-box {
+  background-color: #101828;
+  color: white;
+  border-radius: 8px;
+  padding: 12px;
+}
+
+.team-overlap-warning {
+  background-color: #fef3c7;
+  border: 1px solid #fbbf24;
+  border-radius: 8px;
+  padding: 16px;
+  margin-top: 12px;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 12px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+  margin-top: 24px;
+}
+
+.btn-reject {
+  flex: 1;
+  height: 44px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--accent-foreground);
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-reject:hover {
+  background-color: #fee2e2;
+  color: #991b1b;
+  border-color: #fca5a5;
+}
+
+.btn-approve {
+  flex: 1;
+  height: 44px;
+  border-radius: 8px;
+  background-color: #10b981;
+  color: white;
+  font-size: 14px;
+  font-weight: 500;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn-approve:hover {
+  background-color: #059669;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 48px 0;
 }

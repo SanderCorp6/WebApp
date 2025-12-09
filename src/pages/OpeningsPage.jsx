@@ -31,7 +31,6 @@ function OpeningsPage() {
   const { departments } = useDepartments();
   const { positions } = usePositions();
 
-  // Hardcoded statuses for valid options
   const statuses = ["Open", "On hold", "In interview", "Offer extended", "Closed"];
   const contractTypes = ["Full-time", "Part-time", "Intern"];
 

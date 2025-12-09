@@ -6,7 +6,6 @@ const PopoverContext = createContext();
 export function Popover({ children, open, onOpenChange }) {
   const [isOpenState, setIsOpenState] = useState(false);
 
-  // Use controlled state if 'open' prop is provided, otherwise internal state
   const isControlled = open !== undefined;
   const isOpen = isControlled ? open : isOpenState;
   const setIsOpen = isControlled ? onOpenChange : setIsOpenState;

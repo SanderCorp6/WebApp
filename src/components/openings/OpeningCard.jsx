@@ -58,7 +58,7 @@ function OpeningCard({ opening, onEdit, onDelete, onStatusChange, isDeleting, is
           </div>
         </div>
 
-        {/* Action buttons - visible on hover */}
+        {/* Action buttons */}
         <div className="card-actions" style={{ opacity: isHovered ? 1 : 0 }}>
           <button onClick={onEdit} className="btn-icon" title="Edit opening">
             <Edit2 size={8} />
