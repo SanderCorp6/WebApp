@@ -1,0 +1,55 @@
+.ui-input {
+  display: flex;
+  height: 44px; /* h-[44px] as requested */
+  width: 100%;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background-color: var(--input-background);
+  padding: 0.5rem 0.75rem; 
+  font-size: 0.875rem; /* text-sm */
+  color: var(--foreground);
+  transition: box-shadow 0.15s ease-in-out, border-color 0.15s ease-in-out;
+}
+
+.ui-input:focus {
+  outline: none;
+  border-color: transparent;
+  box-shadow: 0 0 0 2px var(--ring);
+}
+
+.ui-input::placeholder {
+  color: var(--muted-foreground);
+}
+
+.ui-label {
+  font-size: 0.875rem; /* text-sm */
+  font-weight: 500;
+  line-height: 1;
+  color: var(--accent-foreground);
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.ui-textarea {
+  display: flex;
+  min-height: 88px;
+  width: 100%;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background-color: var(--input-background);
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  color: var(--foreground);
+  resize: none;
+  transition: box-shadow 0.15s ease-in-out, border-color 0.15s ease-in-out;
+}
+
+.ui-textarea:focus {
+  outline: none;
+  border-color: transparent;
+  box-shadow: 0 0 0 2px var(--ring);
+}
+
+.ui-textarea::placeholder {
+  color: var(--muted-foreground);
+}
