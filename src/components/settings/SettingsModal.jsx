@@ -144,7 +144,7 @@ export function SettingsModal({ user, open, onOpenChange }) {
                       {user.image_url ? (
                         <img src={user.image_url} alt="Profile" className="avatar" />
                       ) : (
-                        <div className="avatar-placeholder">
+                        <div className="avatar-placeholder-settings">
                           <span>
                             {user?.full_name
                               ?.split(" ")

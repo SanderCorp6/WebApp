@@ -1,5 +1,6 @@
 import { useDepartments } from "../../hooks/useDepartments";
 import { usePositions } from "../../hooks/usePositions";
+import { useAuth } from "../../hooks/useAuth";
 import { IoCloseCircleSharp } from "react-icons/io5";
 import { Search, Plus, Download } from "lucide-react";
 
@@ -32,6 +33,7 @@ function EmployeeToolbar({
   onAddClick,
   onExportClick,
 }) {
+  const { user } = useAuth();
   const { departments } = useDepartments();
   const { positions } = usePositions();
 
@@ -53,12 +55,16 @@ function EmployeeToolbar({
             onChange={(e) => setSearchTerm(e.target.value)}
           />
         </div>
-        <button className="export-data-btn" onClick={onExportClick}>
-          <Download size={13} /> Export
-        </button>
-        <button className="add-employee-btn" onClick={onAddClick}>
-          <Plus size={13} /> Add Employee
-        </button>
+        {user?.role !== "Employee" && (
+          <button className="export-data-btn" onClick={onExportClick}>
+            <Download size={13} /> Export
+          </button>
+        )}
+        {user?.role === "Administrator" && (
+          <button className="add-employee-btn" onClick={onAddClick}>
+            <Plus size={13} /> Add Employee
+          </button>
+        )}
       </div>
 
       <div className="filters">

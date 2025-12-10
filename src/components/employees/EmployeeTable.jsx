@@ -1,7 +1,10 @@
 import EmployeeRow from "./EmployeeRow";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
+import { useAuth } from "../../hooks/useAuth";
 
 function EmployeeTable({ employees, sortBy, sortDir, onSort }) {
+  const { user } = useAuth();
+
   if (employees.length === 0) {
     return <p>No employees with this filter</p>;
   }
@@ -12,7 +15,7 @@ function EmployeeTable({ employees, sortBy, sortDir, onSort }) {
     { label: "DEPARTMENT", key: "department" },
     { label: "STATUS", key: "status" },
     { label: "HIRE DATE", key: "date" },
-    { label: "SALARY", key: "salary" },
+    ...(user?.role === "Administrator" ? [{ label: "SALARY", key: "salary" }] : []),
     { label: "ACTIONS", key: null },
   ];
 

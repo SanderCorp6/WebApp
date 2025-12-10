@@ -1,12 +1,19 @@
 import { Eye } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../hooks/useAuth";
+import toast from "react-hot-toast";
 
 const StatusTag = ({ status }) => <span className={`status-tag status-${status?.toLowerCase()}`}>{status}</span>;
 
 function EmployeeRow({ employee }) {
   const navigate = useNavigate();
+  const { user } = useAuth();
 
   const handleViewClick = () => {
+    if (user?.role === "Employee") {
+      toast.error("You do not have permission to view this employee");
+      return;
+    }
     navigate(`/employees/${employee.id}`);
   };
 
@@ -19,12 +26,15 @@ function EmployeeRow({ employee }) {
         <StatusTag status={employee.status} />
       </td>
       <td>{new Date(employee.hire_date).toLocaleDateString("en-CA")}</td>
-      <td className="bold">
-        {new Intl.NumberFormat("es-MX", {
-          style: "currency",
-          currency: "MXN",
-        }).format(Number(employee.salary))}
-      </td>
+
+      {user?.role === "Administrator" && (
+        <td className="bold">
+          {new Intl.NumberFormat("es-MX", {
+            style: "currency",
+            currency: "MXN",
+          }).format(Number(employee.salary))}
+        </td>
+      )}
 
       <td>
         <button className="action-btn" onClick={handleViewClick}>

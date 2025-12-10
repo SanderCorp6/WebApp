@@ -3,6 +3,7 @@ import { FormInput, FormSelect } from "../ui/FormInput";
 import { FormSection } from "../ui/FormSection";
 import { EmployeeHeaderInfo } from "./EmployeeHeaderInfo";
 import { useEmployeeForm } from "../../hooks/useEmployeeForm";
+import { useAuth } from "../../hooks/useAuth";
 import EmployeeActionsBar from "./EmployeeActionsBar";
 import EmployeeHistory from "./EmployeeHistory";
 import { Briefcase, Mail, DollarSign, Award } from "lucide-react";
@@ -19,6 +20,7 @@ function EmployeeDetailForm({
   departments,
   employeesOptions,
 }) {
+  const { user } = useAuth();
   const { formData, isEditing, setIsEditing, handleInputChange, handleSave, handleCancel, handleToggleStatus } =
     useEmployeeForm(employee, updateEmployee);
 
@@ -102,7 +104,7 @@ function EmployeeDetailForm({
             id="role"
             value={formData.role}
             onChange={handleInputChange}
-            disabled={!isEditing || isUpdating}
+            disabled={!isEditing || isUpdating || user?.role !== "Administrator"}
           >
             <option value="Administrator">Administrator</option>
             <option value="HR">HR</option>

@@ -7,10 +7,13 @@ import { Input } from "../components/ui/input";
 import { Label } from "../components/ui/label";
 import { Textarea } from "../components/ui/textarea";
 import * as vacationService from "../api/vacationService";
+import { useAuth } from "../hooks/useAuth";
 
 import "../styles/VacationsPage.css";
 
 export default function VacationsPage() {
+  const { user } = useAuth();
+
   const [activeTab, setActiveTab] = useState("my-vacations");
   const [requestModalOpen, setRequestModalOpen] = useState(false);
   const [selectedRequest, setSelectedRequest] = useState(null);
@@ -139,16 +142,18 @@ export default function VacationsPage() {
           >
             My Vacations
           </button>
-          <button
-            onClick={() => {
-              setActiveTab("team-requests");
-              setSelectedRequest(null);
-            }}
-            className={`tab-button ${activeTab === "team-requests" ? "active" : ""}`}
-          >
-            Team Requests
-            {pendingRequests.length > 0 && <span className="tab-badge">{pendingRequests.length}</span>}
-          </button>
+          {user?.role !== "Employee" && (
+            <button
+              onClick={() => {
+                setActiveTab("team-requests");
+                setSelectedRequest(null);
+              }}
+              className={`tab-button ${activeTab === "team-requests" ? "active" : ""}`}
+            >
+              Team Requests
+              {pendingRequests.length > 0 && <span className="tab-badge">{pendingRequests.length}</span>}
+            </button>
+          )}
         </div>
 
         {/* My Vacations Tab */}

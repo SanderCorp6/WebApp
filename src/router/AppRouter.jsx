@@ -11,6 +11,16 @@ import OpeningsPage from "../pages/OpeningsPage";
 import EmployeeDetailPage from "../pages/EmployeeDetailPage";
 import EmployeeRegisterPage from "../pages/EmployeeRegisterPage";
 import ActivateAccountPage from "../pages/ActivateAccountPage";
+import toast from "react-hot-toast";
+
+const RoleRoute = ({ children, allowedRoles }) => {
+  const { user } = useAuth();
+  if (!user || !allowedRoles.includes(user.role)) {
+    toast.error("You are not authorized to access this page.");
+    return <Navigate to="/" replace />;
+  }
+  return children;
+};
 
 function AppRouter() {
   const { user } = useAuth();
@@ -30,10 +40,31 @@ function AppRouter() {
         }
       >
         <Route index element={<EmployeesPage />} />
-        <Route path="employees/:id" element={<EmployeeDetailPage />} />
-        <Route path="employees/register" element={<EmployeeRegisterPage />} />
+        <Route
+          path="employees/:id"
+          element={
+            <RoleRoute allowedRoles={["Administrator", "HR"]}>
+              <EmployeeDetailPage />
+            </RoleRoute>
+          }
+        />
+        <Route
+          path="employees/register"
+          element={
+            <RoleRoute allowedRoles={["Administrator"]}>
+              <EmployeeRegisterPage />
+            </RoleRoute>
+          }
+        />
         <Route path="vacations" element={<VacationsPage />} />
-        <Route path="openings" element={<OpeningsPage />} />
+        <Route
+          path="openings"
+          element={
+            <RoleRoute allowedRoles={["Administrator", "HR"]}>
+              <OpeningsPage />
+            </RoleRoute>
+          }
+        />
       </Route>
 
       <Route path="*" element={<Navigate to={user ? "/" : "/login"} />} />

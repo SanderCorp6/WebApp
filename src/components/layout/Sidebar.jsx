@@ -48,7 +48,7 @@ function Sidebar() {
         <div className="nav-buttons">
           <SidebarNavLink name="Employees" route="" icon={Users} />
           <SidebarNavLink name="Vacations" route="vacations" icon={CalendarIcon} />
-          <SidebarNavLink name="Openings" route="openings" icon={Briefcase} />
+          {currentUser?.role !== "Employee" && <SidebarNavLink name="Openings" route="openings" icon={Briefcase} />}
         </div>
 
         <div className="info-section">
